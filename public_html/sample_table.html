@@ -1,52 +1,93 @@
 <html>
-<head>
-	<link rel="stylesheet" type="text/css" href="css/growth_plot.css">
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/reset.css">
+		<link rel="stylesheet" type="text/css" href="css/growth_plot.css">
+	</head>
+	<body>
+		<div class="container">
+			<div class="margin_bottom">
+				<span class="bold header"> Select Child </span>
+				<select><option>Dou</option><option>Dou2</option></select>
+			</div>
+			<form class="span_12">
+				<table class="no-spacing span_12" id="child_inputdata_table">
+					<tr>
+						<td colspan="2">
+							<input id="child_date" type="date"/>
+							<label for="child_date">Date</label>
+						</td>
+					</tr>
 
-</head>
-<body>
-	<div class="container">
-		<h2>Select Child</h2><select name="" id=""><option>Dou</option></select>
-		<ul>
-			<li>
-				<input id="child_date" type="date" />
-				<label for="child_date">Date</label>
-			</li>
-			<li>
-				<input id="child_date" type="date" />
-				<label for="child_date">Date</label>
-			</li>
-			<li>
-				<input id="child_date" type="date" />
-				<label for="child_date">Date</label>
-			</li>
-			<li>
-				<input id="child_date" type="date" />
-				<label for="child_date">Date</label>
-			</li>
-			<li>
-				<input id="child_date" type="date" />
-				<label for="child_date">Date</label>
-			</li>
+					<tr>
+						<td class="span_6">
+							<input class="span_12" id="child_height" type="number" min="0" />
+							<label for="child_height">Height (cm)</label>
+						</td>
+						<td class="span_6">
+							<input class="span_12" id="child_weight" type="number" min="0" />
+							<label for="child_weight">Weight (kg)</label>
+						</td>
+					</tr>
+				</table>
+				<!--
+				<ul>
+					<li>
+						<input id="child_date" type="date" style="width:100%" />
+						<label for="child_date">Date</label>
+					</li>
+					
+	 				<span class="inline_block">
+						<li class="span_6">
+							<input class="span_12" id="child_height" type="number" min="0" />
+							<label for="child_height">Height (cm)</label>
+						</li>
+					</span>
 
-			<li>
-				<button>Clear</button>
-				<button>Submit</button>
-			</li>
-		</ul>
+					<span class="inline_block">
+						<li class="span_6 float_right">
+							<input class="span_12" id="child_weight" type="number" min="0" />
+							<label for="child_weight">Weight (kg)</label>
+						</li>
+					</span>
+				
+				<div class="inline_block">
+					<li>
+						<input id="head_circumference" type="number" min="0" />
+						<label for="head_circumference">Head Circumference</label>
+					</li>
+					</div>
+					<div class="inline_block">
+					<li>
+						<input id="child_age" type="number" min="0" />
+						<label for="child_age">Age</label>
+					</li>
+					</div>
 
-<table>
-	<tr>
-		<th>HEIGHT</th>
-		<th>WEIGHT</th>
-		<th>DATE</th>
-	</tr>
-	<tr>
-		<td>90cm</td>
-		<td>20kg</td>
-		<td>2000-05-01</td>
-	</tr>
-</table>
+					<li>
+						<input id="location" type="text" />
+						<label for="location">Location/Notes (Optional)</label>
+					</li>
 
-	</div>
-</body>
+					<li>
+						<button class=" blue" type="clear">Clear</button>
+						<button class=" orange" type="submit">Submit</button>
+					</li> -->
+				</ul>
+			</form>
+
+			<table class="no-spacing">
+				<tr>
+					<th>HEIGHT</th>
+					<th>WEIGHT</th>
+					<th>DATE</th>
+				</tr>
+				<tr>
+					<td>90cm</td>
+					<td>20kg</td>
+					<td>2000-05-01</td>
+				</tr>
+			</table>
+
+		</div>
+	</body>
 </html>
