@@ -1,0 +1,201 @@
+body {
+	font-family: "Lucida Grande", "Trebuchet MS", sans-serif;
+	color: #58595B;
+}
+
+.container {
+	width: 280px;
+	margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  position: relative;
+}
+
+.margin_bottom {
+	margin-bottom: 20px;
+}
+
+.float_left {
+	float: left;
+}
+
+.float_right {
+	float: right;
+}
+
+.right {
+  right: 0px;
+  width: 100px;
+}
+
+.left {
+  left: 0px;
+  width: 100px;
+}
+
+.bold {
+	font-weight: 900;
+}
+
+.blue {
+	
+}
+
+.orange {
+
+}
+
+.header {
+	font-size: 20px;
+	line-height: 40px;
+}
+
+.inline_block {
+	display: inline-block;
+}
+
+select {
+	min-width: 150px;
+	border-width: 3px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border-color: #58595B; 
+	font-size: 120%;
+	height: 40px;
+	line-height: 40px;
+	color: #58595B;
+	padding: 5px;
+	float:right;
+
+	/*dropdown icon change*/
+/*  background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-position-x: 124px;*/
+}
+select::-ms-expand { /* for IE 11 */
+    /*display: none;*/
+}
+
+
+
+ul { 
+	 
+}
+
+li {
+  border: 2px solid #58595B;
+  margin-top: -2px;
+  margin-left: -2px;
+  display: block;
+  position: relative;
+}
+
+input {
+	height: 50px;
+	padding-top: 15px;
+	padding-left: 7px;
+
+}
+
+label, input {
+  display: block;
+  border: 0px solid #000;
+}
+
+label {
+  font-size: 80%;
+  color: #58595B;
+  letter-spacing: 0em;
+  top: 7px;
+  left: 7px;
+	position: absolute;
+}
+
+/*html {
+  min-height: 100%;
+}
+
+body {
+  background-color: #ddd;
+  background-image: linear-gradient(to bottom, #f3f3f3 50%, #acacac 90%);
+  color: #888888;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  padding: 20px;
+}
+
+form, ul, li, input, label {
+  box-sizing: border-box;
+}
+
+h1, p {
+  color: #333;
+  font-family: "Lucida Grande", "Trebuchet MS", sans-serif;
+  font-size: 1.6em;
+  margin: 0.5em 0 1em 0;
+  text-align: center;
+}
+
+p {
+  font-size: 80%;
+}
+
+label, input {
+  display: block;
+}
+
+ul {
+  background-color: #fffdfa;
+  border: 5px solid #888888;
+  list-style-type: none;
+  margin: 3em auto;
+  padding: 0;
+  max-width: 350px;
+}
+
+li {
+  border-bottom: 1px solid #c8c8c8;
+  margin-top: -1px;
+  position: relative;
+}
+
+label {
+  font-family: "Lucida Grande", "Trebuchet MS", sans-serif;
+  font-size: 70%;
+  color: #aeaeae;
+  letter-spacing: 0.03em;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  text-transform: uppercase;
+}
+.active label, input:focus + label {
+  color: #0059a6;
+  font-weight: bold;
+  letter-spacing: -0.01em;
+}
+
+input, input:focus {
+  background-color: transparent;
+  border: none;
+  color: #626262;
+  font-size: 18px;
+  margin: 9px 0 7px 0;
+  margin: 0;
+  padding: 2em 10px 10px 10px;
+  outline: none;
+  width: 100%;
+}
+
+input:focus {
+  color: #000;
+  background-color: #eeeeee;
+  box-shadow: 0px 3px 4px -2px rgba(0, 0, 115, 0.25) inset;
+}
+
+label, input {
+  transition: color 0.4s ease, background-color 0.1s ease-in-out;
+}*/
