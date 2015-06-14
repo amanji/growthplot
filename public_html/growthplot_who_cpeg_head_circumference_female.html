@@ -1,0 +1,114 @@
+<p>Growthplot WHO CPEG Head Circumference Female</p>
+<div id="chartdiv" style="width: 100%; height: 800px;"></div>
+
+<style type="text/css">
+  #chartdiv {
+    width   : 100%;
+    height    : 500px;
+    font-size : 11px;
+  }
+
+  .amcharts-graph-p3 .amcharts-graph-stroke {
+    stroke-dasharray: 500% ;
+    -webkit-animation: css-effect 5s ease-out forwards;
+    animation: css-effect 5s ease-out forwards;
+  }
+
+  .amcharts-graph-p10 .amcharts-graph-stroke {
+    stroke-dasharray: 500% ;
+    -webkit-animation: css-effect 5s ease-out forwards;
+    animation: css-effect 5s ease-out forwards;
+  }
+
+  .amcharts-graph-p25 .amcharts-graph-stroke {
+    stroke-dasharray: 500% ;
+    -webkit-animation: css-effect 5s ease-out forwards;
+    animation: css-effect 5s ease-out forwards;
+  }
+
+  .amcharts-graph-p50 .amcharts-graph-stroke {
+    stroke-dasharray: 500% ;
+    -webkit-animation: css-effect 5s ease-out forwards;
+    animation: css-effect 5s ease-out forwards;
+  }
+
+  .amcharts-graph-p75 .amcharts-graph-stroke {
+    stroke-dasharray: 500% ;
+    -webkit-animation: css-effect 5s ease-out forwards;
+    animation: css-effect 5s ease-out forwards;
+  }
+
+  .amcharts-graph-p90 .amcharts-graph-stroke {
+    stroke-dasharray: 500% ;
+    -webkit-animation: css-effect 5s ease-out forwards;
+    animation: css-effect 5s ease-out forwards;
+  }
+
+  .amcharts-graph-p97 .amcharts-graph-stroke {
+    stroke-dasharray: 500% ;
+    -webkit-animation: css-effect 5s ease-out forwards;
+    animation: css-effect 5s ease-out forwards;
+  }
+
+  @-webkit-keyframes css-effect {
+    0% {
+      stroke-dashoffset: 500%;
+    }
+    100% {
+      stroke-dashoffset: 0%;
+    }
+  }
+  @keyframes css-effect {
+    0% {
+      stroke-dashoffset: 500%;
+    }
+    100% {
+      stroke-dashoffset: 0%;
+    }
+  }
+</style>
+
+<script type="text/javascript">
+
+var head_circumference_female = {{ head_circumference_female|safe }};
+
+  var percentiles = ["p3", "p10", "p25", "p50", "p75", "p90", "p97"];
+
+  var chartData = [];
+
+  AmCharts.ready(function() {
+
+  //Prepare the data
+  head_circumference_female.forEach(function(element, array, index){
+    chartData.push(element.fields);
+  });
+
+  //Define a single chart then add multiple graphs to them
+  var chart = new AmCharts.AmSerialChart();
+  //chartData is an array of objects specifying the category field and the valueFields
+  chart.dataProvider = chartData;
+  chart.addClassNames = true;
+
+  //categoryField sets the x-axis
+  chart.categoryField = "month";
+  //chart.startEffect = "easeOutSine";
+  //chart.startAlpha = 0;
+  //chart.startDuration = 0.1;
+  //chart.sequencedAnimation = false;
+  
+  percentiles.forEach(function(element, array, index){
+    console.log(element);
+    var graph = new AmCharts.AmGraph();
+    graph.id = element;
+    graph.valueField = element;
+    graph.type = "line";
+    graph.lineColor = "#d1655d";
+    graph.lineThickness = 2;
+    chart.addGraph(graph);
+  });
+
+  chart.write('chartdiv');
+
+}); 
+
+</script>
