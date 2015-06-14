@@ -4,7 +4,7 @@ body {
 }
 
 .container {
-	max-width: 280px;
+	max-width: 410px;
 	margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
@@ -12,8 +12,12 @@ body {
   width:100%;
 }
 
+.margin_top {
+	margin-top: 30px;
+}
+
 .margin_bottom {
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 }
 
 .float_left {
@@ -38,17 +42,17 @@ body {
 	font-weight: 900;
 }
 
-.blue {
-	
+button.blue {
+	background: #296FA4;
 }
 
-.orange {
-
+button.orange {
+	background: #FF5410;
 }
 
 .header {
-	font-size: 20px;
-	line-height: 40px;
+	font-size: 180%;
+	line-height: 180%;
 }
 
 .inline_block {
@@ -104,17 +108,17 @@ body {
 }
 
 select#child_select  {
-	min-width: 150px;
+	min-width: 230px;
 	border-width: 3px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
 	border-color: #58595B; 
-	font-size: 120%;
-	height: 40px;
+	font-size: 170%;
+	height: 55px;
 	line-height: 40px;
 	color: #58595B;
-	padding: 5px;
+	padding: 7px;
 	float:right;
 
 	/*dropdown icon change*/
@@ -134,18 +138,23 @@ table.no-spacing {
 	border-top: 0;
 }
 
-#child_inputdata_table td {
-  border: 2px solid #58595B;
+.child_inputdata_table td {
+  border: 3px solid #58595B;
   position: relative;
+	height: 70px;
+}
+
+table.child_inputdata_table {
+	margin-top: -3px;
 }
 
 #child_input_form input, #child_input_form select {
-	height: 50px;
-	padding-top: 15px;
-	padding-left: 7px;
+	padding-top: 23px;
+	padding-left: 10px;
 	font-weight: 900;
 	color: #58595B;
-	font-size: 125%;
+	font-size: 180%;
+	position: absolute;
 }
 
 #child_input_form label, #child_input_form input {
@@ -154,10 +163,45 @@ table.no-spacing {
 }
 
 #child_input_form label {
-  font-size: 80%;
+  font-size: 100%;
   color: #58595B;
-  letter-spacing: 0em;
-  top: 7px;
-  left: 7px;
+  letter-spacing: 0.03em;
+  top: 6px;
+  left: 10px;
 	position: absolute;
 }
+
+#child_input_form button {
+	border: 0;
+  padding: 0;
+  width: 33.333333%;
+  height: 70px;
+  /*background: #eee;*/
+  font-size: 180%;
+  font-weight: 700;
+  color: white;
+}
+
+.standard th,
+.standard td{
+  border: 2px solid #58595B;
+  height: 40px;
+  position: relative;
+}
+
+.standard th {
+  background: #E6E7E8;
+}
+
+.center {
+	position: absolute;
+	top: 50%;  /* position the top  edge of the element at the middle of the parent */
+  left: 50%; /* position the left edge of the element at the middle of the parent */
+	transform: translate(-50%, -50%);
+	white-space: nowrap;
+}
+
+table.standard {
+	width: 100%;
+}
+
