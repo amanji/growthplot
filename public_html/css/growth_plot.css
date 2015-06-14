@@ -55,15 +55,55 @@ body {
 	display: inline-block;
 }
 
+.span_1 {
+	width: 8.333333%;
+}
+
+.span_2 {
+	width: 16.666667%;
+}
+
+.span_3 {
+	width: 25%;
+}
+
+.span_4 {
+	width: 33.333333%;
+}
+
+.span_5 {
+	width: 41.666667%;
+}
+
 .span_6 {
 	width: 50%;
+}
+
+.span_7 {
+	width: 58.333333%;
+}
+
+.span_8 {
+	width: 66.666667%;
+}
+
+.span_9 {
+	width: 75%;
+}
+
+.span_10 {
+	width: 83.333333%;
+}
+
+.span_11 {
+	width: 91.666667%;
 }
 
 .span_12 {
 	width: 100%;
 }
 
-select {
+#child_select select {
 	min-width: 150px;
 	border-width: 3px;
 	-webkit-border-radius: 5px;
@@ -84,13 +124,14 @@ select {
   appearance: none;
   background-position-x: 124px;*/
 }
-select::-ms-expand { /* for IE 11 */
+#child_select select::-ms-expand { /* for IE 11 */
     /*display: none;*/
 }
 
 table.no-spacing {
   border-spacing:0; /* Removes the cell spacing via CSS */
   border-collapse: collapse;  /* Optional - if you don't want to have double border where cells touch */
+	border-top: 0;
 }
 
 #child_inputdata_table td {
