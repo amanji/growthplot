@@ -139,7 +139,7 @@ table.no-spacing {
   position: relative;
 }
 
-input {
+#child_input_form input, #child_input_form select {
 	height: 50px;
 	padding-top: 15px;
 	padding-left: 7px;
@@ -148,12 +148,12 @@ input {
 	font-size: 125%;
 }
 
-label, input {
+#child_input_form label, #child_input_form input {
   display: block;
   border: 0px solid #000;
 }
 
-label {
+#child_input_form label {
   font-size: 80%;
   color: #58595B;
   letter-spacing: 0em;
