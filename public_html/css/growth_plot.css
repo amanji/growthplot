@@ -103,7 +103,7 @@ body {
 	width: 100%;
 }
 
-#child_select select {
+select#child_select  {
 	min-width: 150px;
 	border-width: 3px;
 	-webkit-border-radius: 5px;
@@ -124,7 +124,7 @@ body {
   appearance: none;
   background-position-x: 124px;*/
 }
-#child_select select::-ms-expand { /* for IE 11 */
+select#child_select ::-ms-expand { /* for IE 11 */
     /*display: none;*/
 }
 
