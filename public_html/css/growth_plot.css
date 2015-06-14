@@ -139,7 +139,11 @@ table.no-spacing {
   position: relative;
 }
 
-#child_input_form input, #child_input_form select {
+#child_inputdata_table select {
+	height: 100px;
+}
+
+#child_input_form input{
 	height: 50px;
 	padding-top: 15px;
 	padding-left: 7px;
