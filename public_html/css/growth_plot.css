@@ -50,6 +50,10 @@ button.orange {
 	background: #FF5410;
 }
 
+button.yellow {
+	background: #FFA732;
+}
+
 .header {
 	font-size: 180%;
 	line-height: 180%;
