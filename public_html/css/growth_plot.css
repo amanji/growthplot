@@ -122,14 +122,14 @@ select#child_select  {
 	float:right;
 
 	/*dropdown icon change*/
-/*  background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right;
+  background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-position-x: 124px;*/
+  background-position-x: 190px;
 }
-select#child_select ::-ms-expand { /* for IE 11 */
-    /*display: none;*/
+select#child_select::-ms-expand { /* for IE 11 */
+    display: none;
 }
 
 table.no-spacing {
