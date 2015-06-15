@@ -161,6 +161,10 @@ table.child_inputdata_table {
 	position: absolute;
 }
 
+#child_input_form input.checkbox {
+	position: relative;
+}
+
 #child_input_form label, #child_input_form input {
   display: block;
   border: 0px solid #000;
