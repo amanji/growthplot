@@ -20,6 +20,8 @@ from . import views
 urlpatterns = [
     #url(r'^growthplot/', include('growthplot.urls')),
     url(r'^$', views.index, name='index'),
+    url(r'^login', views.login),
+    url(r'^register', views.register),
     #url(r'^standard_curve_example$', views.standard_curve_example),
     #url(r'^admin/', include(admin.site.urls)),
 ]

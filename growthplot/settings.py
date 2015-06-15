@@ -81,7 +81,8 @@ DATABASES = {
         'NAME': 'growthplot',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': '45.55.212.148',
+        #'HOST': '45.55.212.148',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
