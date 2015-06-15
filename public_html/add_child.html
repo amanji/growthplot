@@ -1,28 +1,53 @@
 <!DOCTYPE html>
 <html>
-<head>
+	<head>
 
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
 		<link rel="stylesheet" type="text/css" href="css/growth_plot.css">
-<body>
 
-<div style="background-color:#22AF73
-; color:white; padding:10px;">
-<img src="img/LogoWhite(NavBar).png">
-</div>
-<br>
+		<title>Add child</title>
+	</head>
 
-<title>Add child</title>
-</head>
-<style>
+	<body>
 
-</style>
-<body>
+<!-- 		<div style="background-color:#22AF73; color:white; padding:10px;">
+		<img src="img/LogoWhite(NavBar).png">
+		</div> -->
+		<!-- <br> -->
 
+		<!-- <center><h1>Step 2: Add a child to start plotting</h1></center> -->
+		<div class="container">
+			<form class="span_12" id="child_input_form">
+				<table class="no-spacing span_12 child_inputdata_table">
+					<tr>
+						<td colspan="2">
+							<input class="span_12" id="child_date" type="date"/>
+							<label for="child_date">Date of Measurement</label>
+						</td>
+					</tr>
 
-<center><h1>Step 2: Add a child to start plotting</h1></center>
-<div class="container">
-<form id="child_input_form">
+					<tr>
+						<td class="span_6">
+							<input class="span_12" id="child_height" type="number" min="0" />
+							<label for="child_height">Height (cm)</label>
+						</td>
+						<td class="span_6">
+							<input class="span_12" id="child_weight" type="number" min="0" />
+							<label for="child_weight">Weight (kg)</label>
+						</td>
+					</tr>
+				</table>
+				
+				<div class="margin_top">
+					<button type="clear" class="blue">
+							Clear
+					</button>
+					<button type="submit" class="float_right orange">
+							Submit
+					</button>
+				</div>
+			</form>
+			<!-- <form id="child_input_form">
 				<table class="no-spacing span_12" id="child_inputdata_table">
 					<tr>
 						<td colspan="2">
@@ -45,24 +70,8 @@
 						</td>
 					</tr>
 				</table>
-				</form>
-</div>
-<br>
-<center><button type="button" class="btn btn-primary">Submit</button></center>
-
-
-</body>
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
-      <link rel="stylesheet" type="text/css" href="css/growth_plot.css">
-
+				<center><button type="button" class="btn btn-primary">Submit</button></center>
+			</form> -->
+		</div>
+	</body>
 </html>
