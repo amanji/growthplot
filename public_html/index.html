@@ -1,33 +1,186 @@
-<!doctype html>
-<html>
-	<head>
-	    <title>Example Domain</title>
+<!DOCTYPE html>
+<html lang="en">
 
-	    <meta charset="utf-8" />
-	    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	    <meta name="viewport" content="width=device-width, initial-scale=1" />
-	    
+{% include 'head.html' %}
 
-	    <!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<body id="page-top">
 
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    {% include 'navigation.html' %}
 
-		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-		
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1>Growth Plot</h1>
+                <hr>
+                <p>Track and record your child's growth yada yada</p>
+                <a href="/login" class="btn btn-primary btn-xl page-scroll">Log in</a>
+            </div>
+        </div>
+    </header>
 
-	    <link rel="stylesheet" type="text/css" href="css/growth_plot.css">
-	</head>
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Growth Plot - Watch your child grow!</h2>
+                    <hr class="light">
+                    <p class="text-faded">
+                        An easy way to take your child's measurement information and tack their growth over time. 
 
-	<body>
-	<div>
-	    <h1>Example Domain</h1>
-	    <p>This domain is established to be used for illustrative examples in documents. You may use this
-	    domain in examples without prior coordination or asking for permission.</p>
-	    <p><a href="http://www.iana.org/domains/example">More information...</a></p>
-	</div>
-	</body>
+                        Your health care worker uses your child's measurements such as height, length, and head circumference (for children under 2) to ensure that he or she is growing normally for their age. It is one of the signs of good general health and is used by health care professionals as a screening tool. 
+                        
+                        You can also use these growth measuremnts, regardless of where it is obtained to record and plot your child's growth and access their growth percentiles over different points in time.
+                        
+                        The information can be used for your own records or shared with a health care professional if you choose.
+
+                        This program uses data from the World Health Organization Growth standards and refereces and plots it on WHO growth curves. For more information on growth curves please see <a href ="whogrowthcharts.ca">whogrowthcharts.ca</a></p>
+                    <a href="#" class="btn btn-default btn-xl">Get Started!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Features</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-pencil wow bounceIn text-primary"></i>
+                        <h3>Long term record</h3>
+                        <p class="text-muted">Store detailed records about your child's growth in one place.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-line-chart  wow bounceIn text-primary" data-wow-delay=".1s"></i>
+                        <h3>Track</h3>
+                        <p class="text-muted">View your child's growth trajectory in the form of a table or a graph.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-area-chart wow bounceIn text-primary" data-wow-delay=".2s"></i>
+                        <h3>WHO Graphs</h3>
+                        <p class="text-muted">We use standardized WHO growth curves so you will have access to the same growth charts as your doctor.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-child wow bounceIn text-primary" data-wow-delay=".3s"></i>
+                        <h3>Stay Healthy!</h3>
+                        <p class="text-muted">Compare your child's growth with standardized curves to make sure they are growing well!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="no-padding" id="portfolio">
+        <div class="container-fluid">
+            <div class="row no-gutter">
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#" class="portfolio-box">
+                        <img src="img/portfolio/input.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Step 1:
+                                </div>
+                                <div class="project-name">
+                                    Enter child measurements
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#" class="portfolio-box">
+                        <img src="img/portfolio/table.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Step 2:
+                                </div>
+                                <div class="project-name">
+                                    View measurements in table form
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#" class="portfolio-box">
+                        <img src="img/portfolio/chart.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Step 3:
+                                </div>
+                                <div class="project-name">
+                                    View measurements on graph
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+               
+              
+            </div>
+        </div>
+    </section>
+
+    <aside class="bg-dark">
+        <div class="container text-center">
+            <div class="call-to-action">
+                <h2>Register now to get started!</h2>
+                <a href="/register" class="btn btn-default btn-xl wow tada">Register</a>
+            </div>
+        </div>
+    </aside>
+
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Let's Get In Touch!</h2>
+                    <hr class="primary">
+                    <p>If you would like more information about this application or submit your feedback, give us a call or send us an email and we will get back to you as soon as possible!</p>
+                </div>
+                <div class="col-lg-4 col-lg-offset-2 text-center">
+                    <i class="fa fa-phone fa-3x wow bounceIn"></i>
+                    <p>999-999-9999</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
+                    <p><a href="mailto:your-email@your-domain.com">contact@growthplot.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jquery.fittext.js"></script>
+    <script src="js/wow.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/creative.js"></script>
+
+</body>
+
 </html>

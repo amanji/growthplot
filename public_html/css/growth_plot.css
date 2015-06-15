@@ -50,6 +50,10 @@ button.orange {
 	background: #FF5410;
 }
 
+button.yellow {
+	background: #FFA732;
+}
+
 .header {
 	font-size: 180%;
 	line-height: 180%;
@@ -203,5 +207,9 @@ table.child_inputdata_table {
 
 table.standard {
 	width: 100%;
+}
+
+.move_down{
+	padding-top: 32px;
 }
 
