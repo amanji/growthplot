@@ -1,6 +1,39 @@
+html {
+  font-size: 10px;
+
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 body {
-	font-family: "Lucida Grande", "Trebuchet MS", sans-serif;
-	color: #58595B;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #58595B;
+  background-color: #fff;
+}
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: #23527c;
+  text-decoration: underline;
+}
+a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+figure {
+  margin: 0;
 }
 
 .growth_plot_container {
@@ -163,7 +196,8 @@ table.child_inputdata_table {
 }
 
 #child_input_form input.checkbox {
-	position: relative;
+	position: static;
+  display: inline;
 }
 
 #child_input_form label, #child_input_form input {
@@ -218,3 +252,30 @@ table.standard {
 	padding-top: 32px;
 }
 
+#child_input_form .register_button {
+  border: 0;
+  padding: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  height: 15%;
+  /*background: #eee;*/
+  font-size: 180%;
+  font-weight: 700;
+  color: white;
+}
+
+#child_input_form input[type='checkbox'] {
+	position: static;
+	padding: 0;
+	display: inline;
+	white-space: nowrap;
+	width: auto;
+	margin-right: 10px;
+	vertical-align: baseline;
+}
+
+.checkbox_text {
+	font-size: 90%;
+	line-height: 120%;
+}
