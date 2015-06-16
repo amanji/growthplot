@@ -6,10 +6,10 @@ body {
 .growth_plot_container {
 	max-width: 410px;
 	margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  position: relative;
-  width:100%;
+	margin-right: auto;
+	margin-top: 20px;
+	position: relative;
+	width:100%;
 }
 
 .margin_top {
@@ -159,6 +159,7 @@ table.child_inputdata_table {
 	color: #58595B;
 	font-size: 180%;
 	position: absolute;
+	width: 100%;
 }
 
 #child_input_form input.checkbox {
