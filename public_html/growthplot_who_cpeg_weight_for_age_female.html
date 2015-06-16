@@ -1,11 +1,11 @@
-<p>Growthplot WHO CPEG Head Circumference Male</p>
-<div id="chartdiv-head-circumference-male" style="width: 100%; height: 800px;"></div>
+<p>Growthplot WHO CPEG Weight For Age Female</p>
+<div id="chartdiv-weight-for-age-female" style="width: 100%; height: 800px;"></div>
 
 <link rel="stylesheet" type="text/css" href="/static/css/chart.css">
 
 <script type="text/javascript">
 
-  var head_circumference_male_sc = JSON.parse(standard_curves.head_circumference_male_sc);
+  var weight_for_age_female_sc = JSON.parse(standard_curves.weight_for_age_female_sc);
 
   var percentiles = ["p3", "p10", "p25", "p50", "p75", "p90", "p97"];
 
@@ -14,7 +14,7 @@
   var graphData = [];
 
   //Prepare the data
-  head_circumference_male_sc.forEach(function (element, array, index){
+  weight_for_age_female_sc.forEach(function (element, array, index){
     chartData.push(element.fields);
   });
 
@@ -31,7 +31,7 @@
     graphData.push(graph);
   });
 
-  var chart = AmCharts.makeChart("chartdiv-head-circumference-male",{
+  var chart = AmCharts.makeChart("chartdiv-weight-for-age-female",{
     "type": "xy",
     "graphs": graphData,
     "dataProvider": chartData,

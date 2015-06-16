@@ -1,8 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Parent(models.Model):
-  email = models.CharField(max_length=255)
-  password = models.CharField(max_length=255)
+  user = models.OneToOneField(User)
 
 GENDER_CHOICES = (
   ('M', 'Male'),
@@ -14,22 +14,23 @@ ACTIVE_CHOICES = (
   ('I', 'Inactive'),
   )
 
+# Currently Child references user
 class Child(models.Model):
-  parent_id = models.ForeignKey(Parent, null=False)
+  parent = models.ForeignKey(User, null=False)
+  name = models.CharField(max_length=255)
   date_of_birth = models.DateTimeField('date of birth')
   sex = models.CharField(max_length=1, choices=GENDER_CHOICES)
-  active_flag = models.CharField(max_length=1, choices=ACTIVE_CHOICES)
+  active_flag = models.CharField(max_length=1, choices=ACTIVE_CHOICES, null=True)
 
 class Log_Entry(models.Model):
   date_of_entry = models.DateTimeField('date of log entry')
   date_of_measurement = models.DateTimeField('date measurement was taken')
-  child_id = models.ForeignKey(Child, null=False)
-  height = models.FloatField()
+  child = models.ForeignKey(Child, null=False)
+  length = models.FloatField()
   weight = models.FloatField()
-  head_circumference = models.FloatField()
-  bmi = models.FloatField()
+  head_circumference = models.FloatField(null=True)
+  bmi = models.FloatField(null=True)
   age = models.IntegerField()
-
 
 # The foloowing tables are for ages 0-2 years
 #############################################

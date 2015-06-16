@@ -1,0 +1,208 @@
+body {
+	font-family: "Lucida Grande", "Trebuchet MS", sans-serif;
+	color: #58595B;
+  padding-top: 70px;
+}
+
+.log-entry-form-container {
+	max-width: 410px;
+	margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  position: relative;
+  width:100%;
+}
+
+.margin_top {
+	margin-top: 30px;
+}
+
+.margin_bottom {
+	margin-bottom: 30px;
+}
+
+.float_left {
+	float: left;
+}
+
+.float_right {
+	float: right;
+}
+
+.right {
+  right: 0px;
+  width: 100px;
+}
+
+.left {
+  left: 0px;
+  width: 100px;
+}
+
+.bold {
+	font-weight: 900;
+}
+
+button.blue {
+	background: #296FA4;
+}
+
+button.orange {
+	background: #FF5410;
+}
+
+.header {
+	font-size: 180%;
+	line-height: 180%;
+}
+
+.inline_block {
+	display: inline-block;
+}
+
+.span_1 {
+	width: 8.333333%;
+}
+
+.span_2 {
+	width: 16.666667%;
+}
+
+.span_3 {
+	width: 25%;
+}
+
+.span_4 {
+	width: 33.333333%;
+}
+
+.span_5 {
+	width: 41.666667%;
+}
+
+.span_6 {
+	width: 50%;
+}
+
+.span_7 {
+	width: 58.333333%;
+}
+
+.span_8 {
+	width: 66.666667%;
+}
+
+.span_9 {
+	width: 75%;
+}
+
+.span_10 {
+	width: 83.333333%;
+}
+
+.span_11 {
+	width: 91.666667%;
+}
+
+.span_12 {
+	width: 100%;
+}
+
+select#child-select  {
+	min-width: 230px;
+	border-width: 3px;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+	border-color: #58595B; 
+	font-size: 170%;
+	height: 55px;
+	line-height: 40px;
+	color: #58595B;
+	padding: 7px;
+	float:right;
+
+	/*dropdown icon change*/
+  background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-position-x: 190px;
+}
+select#child-select::-ms-expand { /* for IE 11 */
+    display: none;
+}
+
+table.no-spacing {
+  border-spacing:0; /* Removes the cell spacing via CSS */
+  border-collapse: collapse;  /* Optional - if you don't want to have double border where cells touch */
+	border-top: 0;
+}
+
+.child_inputdata_table td {
+  border: 3px solid #58595B;
+  position: relative;
+	height: 70px;
+}
+
+table.child_inputdata_table {
+	margin-top: -3px;
+}
+
+#child_input_form input, #child_input_form select {
+	padding-top: 23px;
+	padding-left: 10px;
+	font-weight: 900;
+	color: #58595B;
+	font-size: 180%;
+	position: absolute;
+}
+
+#child_input_form label, #child_input_form input {
+  display: block;
+  border: 0px solid #000;
+}
+
+#child_input_form label {
+  font-size: 100%;
+  color: #58595B;
+  letter-spacing: 0.03em;
+  top: 6px;
+  left: 10px;
+	position: absolute;
+}
+
+#child_input_form button {
+	border: 0;
+  padding: 0;
+  width: 33.333333%;
+  height: 70px;
+  /*background: #eee;*/
+  font-size: 180%;
+  font-weight: 700;
+  color: white;
+}
+
+.standard th,
+.standard td{
+  border: 2px solid #58595B;
+  height: 40px;
+  position: relative;
+}
+
+.standard th {
+  background: #E6E7E8;
+}
+
+.center {
+	position: absolute;
+	top: 50%;  /* position the top  edge of the element at the middle of the parent */
+  left: 50%; /* position the left edge of the element at the middle of the parent */
+	transform: translate(-50%, -50%);
+	white-space: nowrap;
+}
+
+table.standard {
+	width: 100%;
+}
+

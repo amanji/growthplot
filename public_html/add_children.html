@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+{% include 'head.html' %}
+<body>
+
+  <form action="/child" method="POST" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+    <label> Date of Birth  
+    <input name="date-of-birth" type="date">
+    </label>
+    <label>Sex  
+      <select name="sex">
+        <option>M</option>
+        <option>F</option>
+      </select>
+    </label>
+    <label>Name  
+      <input name="name">
+    </label>
+    <button type="submit">Add</button>
+    <button type="cancel">Cancel</button>
+  </form>
+
+</body>
+</html>

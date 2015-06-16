@@ -1,21 +1,28 @@
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 import controllers as controllers
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+import json
 
 def index(request):
-    curve = controllers.get_standard_curves()
-    return render(request, 'index.html', {'weight_for_length_male' : curve})
+    return render(request, 'index.html', {})
 
 def login(request):
   if request.method == 'GET': 
     return render(request, 'login.html')
   elif request.method == 'POST':
-    message = controllers.login_user(request)
+    message = controllers.get_profile(request)
     if message:
       return render(request, 'login.html', {'message' : message})
     else: 
-      return render(request, 'index.html', {})
+      return redirect(profile)
+
+def logout_user(request):
+  logout(request)
+  return redirect('index')
 
 def register(request):
   if request.method == 'GET':
@@ -26,3 +33,44 @@ def register(request):
       return render(request, 'register.html', {'message' : message})
     else:
       return render(request, 'login.html', {})
+
+@login_required
+def profile(request):
+  #Authenticate user
+  standard_curves = controllers.get_standard_curves()
+  children, children_json = controllers.get_children(request)
+  return render(request, 'profile.html', {'standard_curves' : standard_curves, 'children' : children, 'children_json' : children_json, 'todays_date' : controllers.todays_date()})
+
+@login_required()
+def child(request):
+  if request.method == 'GET':
+    return render(request, 'add_children.html', {})
+  elif request.method == 'POST':
+    message = controllers.add_child(request)
+    if message:
+      return render(request, 'add_children.html', {'message' : message})
+    else:
+      return redirect(profile)
+
+@login_required
+def child_profile(request):
+  if request.method == 'GET':
+    return redirect(profile)
+  elif request.method == 'POST':
+    child_profile = controllers.get_child_profile(request)
+    return render(request, 'child_profile.html', {'child_profile' : child_profile})
+
+@login_required
+def data(request):
+  if request.method == 'GET':
+    return redirect(profile)
+  elif request.method == 'POST':
+    return None
+
+@login_required
+def enter_log(request):
+  if request.method == 'GET':
+    return redirect(profile)
+  elif request.method == 'POST':
+    controllers.enter_log(request)
+    return redirect(profile)
