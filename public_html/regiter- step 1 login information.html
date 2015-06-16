@@ -15,36 +15,44 @@
 		</div> -->
 		<!-- <br> -->
 
-		<center><h1>Step 2: Add a child to start plotting</h1></center> 
+		<center><h1>Step 1: Login Information</h1></center> 
 		<div class="container">
 			<form class="span_12" id="child_input_form">
 				<table class="no-spacing span_12 child_inputdata_table">
 					<tr>
 						<td colspan="2">
-							<input class="span_12" id="birth_date" type="date"/>
-							<label for="birth_date">Date of Birth</label>
+							<input class="span_12" id="email" type="email"/>
+							<label for="email">Email</label>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<input class="span_12" id="password" type="password"/>
+							<label for="password">Password</label>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<input class="span_12" id="confirm_password" type="password"/>
+							<label for="confirm_password">Confirm Password</label>
 						</td>
 					</tr>
 
-					<tr>
-						<td class="span_6">
-							<select id="child_sex" class="span_12">
-                            <option value="Female">Female</option>
-                            <option value="Male">Male</option>
-                             </select>
-							<label for="child_sex">Sex</label>
-						</td>
-						<td class="span_6">
-							<input class="span_12" id="child_name" type="text" />
-							<label for="child_name">Name</label>
-						</td>
-					</tr>
 				</table>
-				
+			<center>
+				<div class="checkbox" style="float: left;">
+					<input class="checkbox" type="checkbox" style="display: inline-block">  
+					<font size="1" align="center"> Keep me logged in.</font> 
+					<br>
+					<input class="checkbox" type="checkbox" style="display: inline-block">  
+					<font size="1" align="center">I agree to the terms and conditions. This is a disclaimer test. This helps us not get sued and allows us to operate safely and easily.</font> 
+				</div>
+			</center>
 				<br>
+
 			
 					<center><button type="submit" class="yellow">
-							Add Child
+							Register
 					</button></center>
 			
 			</form>
