@@ -7,7 +7,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #D0D2D3;
+  color: #58595B;
   background-color: #fff;
 }
 input,
@@ -112,3 +112,6 @@ img {
   height: auto;
 }
 
+.padding_md {
+  padding: 20px;
+}
