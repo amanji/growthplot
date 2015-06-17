@@ -31,6 +31,7 @@ class Log_Entry(models.Model):
   head_circumference = models.FloatField(null=True)
   bmi = models.FloatField(null=True)
   age = models.IntegerField()
+  birth = models.BooleanField()
 
 # The foloowing tables are for ages 0-2 years
 #############################################

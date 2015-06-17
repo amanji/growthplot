@@ -57,10 +57,11 @@ def child_profile(request):
   if request.method == 'GET':
     return redirect(profile)
   elif request.method == 'POST':
-    child_profile = controllers.get_child_profile(request)
-    return render(request, 'child_profile.html', {'child_profile' : child_profile})
+    child_profile, child_data = controllers.get_child_profile(request)
+    return render(request, 'child_profile.html', {'child_profile' : child_profile, 'sex' : child_profile["sex"], 'less_than_2' : child_profile["less_than_2"], 'child_data' : child_data})
 
 @login_required
+#TODO: Set for deprecation - no longer needed
 def data(request):
   if request.method == 'GET':
     return redirect(profile)

@@ -14,6 +14,7 @@ from dateutil.relativedelta import relativedelta
 import json
 
 def get_standard_curves():
+  #TODO: Split these into Male and Female
   standard_curves = {
     'weight_for_length_male_sc' : serializers.serialize("json", WHO_Set2_Weight_For_Length_Male.objects.all()),
     'weight_for_length_female_sc' : serializers.serialize("json", WHO_Set2_Weight_For_Length_Female.objects.all()),
@@ -116,11 +117,14 @@ def get_child_profile(request):
   
   formatted_dob = child_profile_obj[0].date_of_birth.strftime("%d%b%Y")
 
+  less_than_2 = (relative_dob.years < 2)
+
   child_profile = {
     'name' : child_profile_obj[0].name,
     'dob' : formatted_dob,
     'sex' : child_profile_obj[0].sex,
     'age' : str(relative_dob.years) + "y" + " " + str(relative_dob.months) + "m",
+    'less_than_2' : less_than_2,
     'last_entry_date' : '',
     'last_weight' : None,
     'last_length' : None,
@@ -139,8 +143,25 @@ def get_child_profile(request):
     child_profile["last_head_circumference"] = last_entry.head_circumference
     child_profile["last_bmi"] = last_entry.bmi
 
-  return child_profile
+  
+  child_data = {
+    'weight_for_age' : [],
+    'height_for_age' : [],
+    'length_for_age' : [],
+    'weight_for_length' : [],
+    'head_circumference' : []
+  };
 
+  # TODO: Prepare the rest of the entries
+  for log_entry in log_entries:
+    age_months = round((float(log_entry.age)/365.2425)*12, 1)
+    child_data['weight_for_age'].append({"weight" : log_entry.weight, "month" : age_months})
+    if not log_entry.birth:
+      child_data['height_for_age'].append({"height" : log_entry.length, "month" : age_months})
+    if log_entry.birth:
+      child_data['length_for_age'].append({"length" : log_entry.length, "month" : age_months}) 
+
+  return child_profile, json.dumps(child_data)
 
 def enter_log(request):
   # TODO: Use a form validation library
@@ -160,9 +181,10 @@ def enter_log(request):
   _dob = datetime.strptime(child_profile_obj[0].date_of_birth.strftime("%Y-%m-%d"), "%Y-%m-%d")
   _dom = datetime.strptime(date_of_measurement, "%Y-%m-%d")
 
-  delta = abs(_dob - _dom).days
+  age_days = age_in_days(_dob, _dom)
+  age_years_boolean = (relative_age_in_years(_dob, _dom) < 2)
 
-  log_entry = Log_Entry(child_id=child_id, date_of_measurement=date_of_measurement, date_of_entry=todays_date(), length=length, weight=weight, bmi=10, age=delta)
+  log_entry = Log_Entry(child_id=child_id, date_of_measurement=date_of_measurement, date_of_entry=todays_date(), length=round(float(length), 1), weight=round(float(weight),1), bmi=round(bmi(weight, length),1), age=age_days, birth=age_years_boolean)
   log_entry.save()
   return None
 
@@ -171,13 +193,20 @@ def get_log_entries(child_id):
   return all_log_entries
 
 # Helper functions
+##################
+
+def todays_date():
+  return datetime.strptime(date.today().strftime("%Y-%m-%d"), "%Y-%m-%d")
+
 def age_in_days(date_of_birth, date):
-  #TOD0:
-  return None
+  return abs(date_of_birth - date).days
 
 def age_in_months(date_of_birth, date):
   #TODO:
   return None
 
-def todays_date():
-  return datetime.strptime(date.today().strftime("%Y-%m-%d"), "%Y-%m-%d")
+def relative_age_in_years(date_of_birth, date):
+  return relativedelta(date, date_of_birth).years
+
+def bmi(weight, length):
+  return (float(weight)/(float(length)/100)**2)

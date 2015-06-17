@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 {% include 'head.html' %}
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <body>
   <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
   <link rel="stylesheet" type="text/css" href="/static/css/growth_plot.css">
@@ -13,73 +11,21 @@
   <div class="container">
 
     <div class="row">
-      <div class="col-md-6">  
+      <div class="col-md-offset-3 col-md-6">  
         {% include 'log_entry_form.html'%}
       </div>
-
-      <div id="child-profile-display" class="col-md-6"></div>
     </div>
 
     <div class="row">
+
+      <div id="child-profile-display" class="col-md-12" style="margin-top:50px"></div>
+
+      <!-- TODO: Pull charts into divs separated by M/F >/< 2years -->
+
       <div id="all-charts" style="margin-top:50px">
-        <div class="col-md-12">
-          <select id="chart-select" class="form-control">
-            <option id="weight-for-age-male">Weight For Age Male - CPEG</option>
-            <option id="weight-for-age-female">Weight For Age Female - CPEG</option>
-
-            <option id="height-for-age-male">Height For Age Male - CPEG</option>
-            <option id="height-for-age-female">Height For Age Female - CPEG</option>
-
-            <option id="length-for-age-male">Length For Age Male - CPEG</option>
-            <option id="length-for-age-female">Length For Age Female - CPEG</option>
-
-            <option ild="weight-for-length-male">Weight For Length Male - CPEG</option>
-            <option id="weight-for-length-female">Weight For Length Female - CPEG</option>
-
-            <option id="head-circumference-male">Head Circumference Age Male - CPEG</option>
-            <option id="head-circumference-female">Head Circumference For Age Female - CPEG</option>
-          </select>
-        </div>
-
-        <script type="text/javascript">
-          var standard_curves = {{ standard_curves|safe }};
-          var children_json = {{ children_json|safe }};
-        </script>
-
-        <div class="col-md-12">  
-          <div style="display:none" id="weight-for-age-male-display">
-            {% include 'growthplot_who_cpeg_weight_for_age_male.html' %}
-          </div>
-          <div style="display:none" id="weight-for-age-female-display">
-            {% include 'growthplot_who_cpeg_weight_for_age_female.html' %}
-          </div>
-          <div style="display:none" id="height-for-age-male-display">
-            {% include 'growthplot_who_cpeg_height_for_age_male.html' %}
-          </div>
-          <div style="display:none" id="height-for-age-female-display">
-            {% include 'growthplot_who_cpeg_height_for_age_female.html' %}
-          </div>
-          <div style="display:none" id="length-for-age-male-display">
-            {% include 'growthplot_who_cpeg_length_for_age_male.html' %}
-          </div>
-          <div style="display:none" id="length-for-age-female-display">
-            {% include 'growthplot_who_cpeg_length_for_age_female.html' %}
-          </div>
-          <div style="display:none" id="weight-for-length-male-display">
-            {% include 'growthplot_who_cpeg_weight_for_length_male.html' %}
-          </div>
-          <div style="display:none" id="weight-for-length-female-display">
-            {% include 'growthplot_who_cpeg_weight_for_length_female.html' %}
-          </div>
-          <div style="display:none" id="head-circumference-male-display">
-            {% include 'growthplot_who_cpeg_head_circumference_male.html' %}
-          </div>
-          <div style="display:none" id="head-circumference-female-display">
-            {% include 'growthplot_who_cpeg_head_circumference_female.html' %}
-          </div>
 
           <!-- #TODO: Table -->
-          <div class="margin_top">
+<!--           <div class="margin_top">
             <table class="no-spacing standard">
               <tr>
                 <th class="span_4"><div class="center">Date</div></th>
@@ -92,7 +38,7 @@
                 <td><div class="center">20</div></td>
               </tr>
             </table>
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -103,12 +49,15 @@
 </body>
 </html>
 
+<script type="text/javascript">
+  var standard_curves = {{ standard_curves|safe }};
+  var children_json = {{ children_json|safe }};
+</script>
+
 <script>
-  var currently_selected_chart = $($('#chart-select').children()[0]).attr("id");
   var currently_selected_child = $($('#child-select').children()[0]).attr("id");
 
   $(document).ready(function () {
-    $('#'+currently_selected_chart+'-display').show();
     $('#selected-child-input').val(currently_selected_child);
     get_child_profile();
   });
@@ -121,7 +70,7 @@
     };
   //Set up AJAX request for graph data
   $.ajax({
-    url: "/metadata",
+    url: "/data",
     type: "POST",
     data: query_data,
     context: document.body
@@ -131,12 +80,6 @@
     console.log(error.responseText);
   });
 }
-
-$('#chart-select').change(function (e) {
-  $('#'+currently_selected_chart+'-display').hide();
-  currently_selected_chart = $(this.options[this.selectedIndex]).attr("id");
-  $('#'+currently_selected_chart+'-display').show();
-});
 
 $('#child-select').change(function (e) {
   currently_selected_child = $(this.options[this.selectedIndex]).attr("id");
