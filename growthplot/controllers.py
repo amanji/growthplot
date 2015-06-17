@@ -55,7 +55,7 @@ def verify_registration(request):
   else:
     user = User.objects.create_user(username=email, email=email, password=password)
     user.save()
-    post_save.connect(create_user, sender=User)
+    # post_save.connect(create_user, sender=User)
 
   # TODO: Constraint checking
   return None
