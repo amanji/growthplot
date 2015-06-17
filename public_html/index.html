@@ -5,181 +5,63 @@
 
 <body id="page-top">
 
-    {% include 'navigation.html' %}
 
-    <header>
-        <div class="header-content">
-            <div class="header-content-inner">
-            </div>
-        </div>
-    </header>
+    <div style="background-color:#22AF73; color:white; padding:10px;">
+        <img src="/static/img/assets/LogoWhite(NavBar).png">
+    </div>
 
-    <section id="services">
+
+    <div class="jumbotron">
         <div class="container">
+
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Features</h2>
-                    <hr class="primary">
+                <div class="col-md-6">  
+                    <h1>Growthplot!</h1>
+                    <p>Track your child's growth</p>
                 </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-pencil wow bounceIn text-primary"></i>
-                        <h3>Long term record</h3>
-                        <p class="text-muted">Store detailed records about your child's growth in one place.</p>
+
+                <div class="col-md-4">
+                    <form id="login-register-form">{% csrf_token %}
+                      <div class="form-group">
+                          <h2> Login to Start Plotting!</h2>
+                          <label for="exampleInputEmail1">Email address</label>
+                          <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" name="password"class="form-control" id="exampleInputPassword1" placeholder="Password">
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-line-chart  wow bounceIn text-primary" data-wow-delay=".1s"></i>
-                        <h3>Track</h3>
-                        <p class="text-muted">View your child's growth trajectory in the form of a table or a graph.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-area-chart wow bounceIn text-primary" data-wow-delay=".2s"></i>
-                        <h3>WHO Graphs</h3>
-                        <p class="text-muted">We use standardized WHO growth curves so you will have access to the same growth charts as your doctor.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-child wow bounceIn text-primary" data-wow-delay=".3s"></i>
-                        <h3>Stay Healthy!</h3>
-                        <p class="text-muted">Compare your child's growth with standardized curves to make sure they are growing well!</p>
-                    </div>
-                </div>
+                    <div class="col-xs-4"><button id="login-button" type="button" class="btn btn-lg">Login</button></div>
+                    <div class="col-xs-4"><button id="register-button" type="button" class="btn btn-lg">Register</button></div>
+                    <div class="col-xs-4"><a href="#">Forgot Password?</a></div>
+                </form>
             </div>
-        </div>
-    </section>
-
-    <section class="no-padding" id="portfolio">
-        <div class="container-fluid">
-            <div class="row no-gutter">
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
-                        <img src="img/portfolio/input.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Step 1:
-                                </div>
-                                <div class="project-name">
-                                    Enter child measurements
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
-                        <img src="img/portfolio/table.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Step 2:
-                                </div>
-                                <div class="project-name">
-                                    View measurements in table form
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
-                        <img src="img/portfolio/chart.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Step 3:
-                                </div>
-                                <div class="project-name">
-                                    View measurements on graph
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-
-
-            </div>
-        </div>
-    </section>
-
-
-    <section id="services">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Watch your child grow!</h2>
-                    <hr class="primary">
-                </div>
-            </div>
-        </div>
-        <div class="container">
-
-          <center>
-            <img src="static/img/logo_login.png">
-          </center>
-
-<br>
-<br>
-          <p class="text-faded">
-              An easy way to take your child's measurement information and tack their growth over time.
-
-              Your health care worker uses your child's measurements such as height, length, and head circumference (for children under 2) to ensure that he or she is growing normally for their age. It is one of the signs of good general health and is used by health care professionals as a screening tool.
-
-              You can also use these growth measuremnts, regardless of where it is obtained to record and plot your child's growth and access their growth percentiles over different points in time.
-
-              The information can be used for your own records or shared with a health care professional if you choose.
-
-              This program uses data from the World Health Organization Growth standards and refereces and plots it on WHO growth curves. For more information on growth curves please see <a href ="whogrowthcharts.ca">whogrowthcharts.ca</a></p>
 
         </div>
-    </section>
 
+    </div>
+</div>
 
-
-    <section id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">Let's Get In Touch!</h2>
-                    <hr class="primary">
-                    <p>If you would like more information about this application or submit your feedback, give us a call or send us an email and we will get back to you as soon as possible!</p>
-                </div>
-                <div class="col-lg-4 col-lg-offset-2 text-center">
-                    <i class="fa fa-phone fa-3x wow bounceIn"></i>
-                    <p>999-999-9999</p>
-                </div>
-                <div class="col-lg-4 text-center">
-                    <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
-                    <p><a href="mailto:your-email@your-domain.com">contact@growthplot.com</a></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="js/jquery.easing.min.js"></script>
-    <script src="js/jquery.fittext.js"></script>
-    <script src="js/wow.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="js/creative.js"></script>
+<!--    <img class="img-responsive header_img" src="/static/img/assets/home_main_image_large.png" /> -->
 
 </body>
-
 </html>
+
+<script type="text/javascript">
+    $('#register-button').click(function (e) {
+        e.preventDefault();
+        console.log("clikced")
+        var form = $('#login-register-form');
+        form.attr("action", "/register");
+        form.attr("method", "GET");
+        form.submit();
+    });
+
+    $('#login-button').click(function (e) {
+        e.preventDefault();
+        var form = $('#login-register-form');
+        form.attr("action", "/login");
+        form.attr("method", 'POST');
+        form.submit();
+    });
+</script>

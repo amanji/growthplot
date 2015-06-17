@@ -12,7 +12,7 @@ def index(request):
 
 def login(request):
   if request.method == 'GET': 
-    return render(request, 'login.html')
+    return render(request, 'login.html', {})
   elif request.method == 'POST':
     message = controllers.get_profile(request)
     if message:
@@ -26,7 +26,7 @@ def logout_user(request):
 
 def register(request):
   if request.method == 'GET':
-    return render(request, 'register.html')
+    return render(request, 'register.html', {})
   elif request.method == 'POST':
     message = controllers.verify_registration(request)
     if message:

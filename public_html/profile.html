@@ -2,29 +2,33 @@
 <html>
 {% include 'head.html' %}
 <body>
+
   <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
   <link rel="stylesheet" type="text/css" href="/static/css/growth_plot.css">
 
   <!-- TODO: Change this to navigation2 -->
-  {% include 'navigation.html' %}
+  <div style="background-color:#22AF73; color:white; padding:10px;">
+    <img src="/static/img/assets/LogoWhite(NavBar).png">
+    <div class="pull-right"><a href="/child" class="btn" style="color:white">Add a new child</a></div>
+  </div>
 
   <div class="container">
 
     <div class="row">
-      <div class="col-md-offset-3 col-md-6">  
+      <div class="col-md-offset-3 col-md-6" style="padding:50px">  
         {% include 'log_entry_form.html'%}
       </div>
     </div>
 
     <div class="row">
 
-      <div id="child-profile-display" class="col-md-12" style="margin-top:50px"></div>
+      <div id="child-profile-display" class="col-md-12"></div>
 
       <!-- TODO: Pull charts into divs separated by M/F >/< 2years -->
 
       <div id="all-charts" style="margin-top:50px">
 
-          <!-- #TODO: Table -->
+        <!-- #TODO: Table -->
 <!--           <div class="margin_top">
             <table class="no-spacing standard">
               <tr>
