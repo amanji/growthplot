@@ -35,6 +35,18 @@ a:focus {
 figure {
   margin: 0;
 }
+header {
+	position: relative;
+	width: 100%;
+}
+img {
+  vertical-align: middle;
+}
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 
 .growth_plot_container {
 	max-width: 410px;
@@ -309,9 +321,13 @@ table.standard {
 	width: auto;
 	margin-right: 10px;
 	vertical-align: baseline;
-}
 
-.checkbox_text {
-	font-size: 90%;
-	line-height: 120%;
+	/*increase size of checkbox box*/
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  background: #9FFF9D;
+  padding: 10px;
+  margin-left: 6px;
 }
