@@ -80,11 +80,11 @@ def get_profile(request):
       if user.is_active:
         login(request, user)
       else:
-        return "Your account has been disabled"
+        return "Your account has been disabled", True
     else:
-      return "That user does not exist, please register."
+      return "That user does not exist, please register.", None
 
-  return None
+  return None, None
 
 def add_child(request):
   parent_id = request.user.id

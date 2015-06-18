@@ -14,9 +14,11 @@ def login(request):
   if request.method == 'GET': 
     return render(request, 'login.html', {})
   elif request.method == 'POST':
-    message = controllers.get_profile(request)
-    if message:
+    message, user = controllers.get_profile(request)
+    if message and user:
       return render(request, 'login.html', {'message' : message})
+    elif message and not user:
+      return render(request, 'register.html', {'message' : message})
     else: 
       return redirect(profile)
 
