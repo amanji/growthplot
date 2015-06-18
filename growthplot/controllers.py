@@ -8,6 +8,7 @@ from .models import Parent, Child, Log_Entry
 from django.core import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.db import IntegrityError
 import time
 from datetime import date, datetime
 from dateutil.relativedelta import relativedelta
@@ -53,12 +54,13 @@ def verify_registration(request):
 
   # Otherwise all fields entered correctly, check database that user doesnt exist
   else:
-    user = User.objects.create_user(username=email, email=email, password=password)
-    user.save()
-
-  # TODO: Constraint checking
-  return None
-
+    try:
+      user = User.objects.create_user(username=email, email=email, password=password)
+      user.save()
+      return None
+    except IntegrityError as e:
+      print e.__cause__
+      return 'That user already exists, please <a href="/login">login</a> or click <a href="/forgotpassword">Forgot Password</a> to retrieve your credentials.'
 
 # Logs user in and get their profile
 def get_profile(request):

@@ -39,7 +39,11 @@ def profile(request):
   #Authenticate user
   standard_curves = controllers.get_standard_curves()
   children, children_json = controllers.get_children(request)
-  return render(request, 'profile.html', {'standard_curves' : standard_curves, 'children' : children, 'children_json' : children_json, 'todays_date' : controllers.todays_date()})
+  if not children:
+    info = "To begin using the system please register one or more children."
+    return render(request, 'add_children.html', {'info' : info})
+  else:
+    return render(request, 'profile.html', {'standard_curves' : standard_curves, 'children' : children, 'children_json' : children_json, 'todays_date' : controllers.todays_date()})
 
 @login_required()
 def child(request):
