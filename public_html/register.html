@@ -1,42 +1,56 @@
 <!doctype html>
 <html>
+
 {% include 'head.html' %}
 
-<h1>Sign up for free</h1>
-<br>
+<body>
 
-<div class="row">
-	<div class="col-md-12">
-		<form action="/register" method="POST" enctype="application/x-www-form-urlencoded">{% csrf_token %}
-			<ul>	
-				<li>
-					<input class="form-control" id="email" name="email" type="email">
-					<label for="email">Email</label>
-				</li>
-				<li>
-					<input id="password" name="password" type="password">
-					<label for="password">Password</label>
-				</li>
-				<li>
-					<input id="confirm-password" name="confirm-password" type="password">
-					<label for="confirm-password">Confirm Password</label>
-				</li>
-			</ul>
-
-			<center>
-				<div class="checkbox">
-					<input type="checkbox" style = "margin-left: 285px"> <font size="1" align="center">I agree to the Terms and Conditions. This is a disclaimer to keep us from being sued. Don't be stupid.</font> 
-				</div>
-			</center>
-
-				<button type="submit" class="btn btn-primary btn-lg">Register</button>
-		
-		</form>
+	<div style="background-color:#22AF73; color:white; padding:10px;">
+		<img src="/static/img/assets/LogoWhite(NavBar).png">
 	</div>
-</div>
 
-	{%if message %}
-	<div class="alert alert-danger" role="alert">{{message}}</div>
-	{% endif %}
+	<div class="container">
 
+		<h1>Sign up for free!</h1>
+		<p>To start tracking your childs growth</p>
+		<br>
+
+		<div class="row">
+			<div class="col-md-12">
+				<form action="/register" method="POST" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input class="form-control" id="email" name="email" type="email">
+					</div>
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input class="form-control" id="password" name="password" type="password">
+					</div>
+					<div class="form-group">
+						<label for="confirm-password">Confirm Password</label>
+						<input class="form-control" id="confirm-password" name="confirm-password" type="password">
+					</div>
+
+					<div class="checkbox">
+						<label>
+							<input type="checkbox"><font size="1">I agree to the Terms and Conditions of this site.
+						</label>
+					</div>
+
+					<button type="submit" class="btn btn-lg btn-default">Register</button>
+				</form>
+			</div>
+
+			<div class="col-md-12">
+			<br />
+				{%if message %}
+				<div class="alert alert-danger" role="alert">{{message|safe}}</div>
+				{% endif %}
+			</div>
+		</div>
+
+	</div>
+
+</body>
 </html>
