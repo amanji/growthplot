@@ -1,11 +1,11 @@
 <!-- <link rel="stylesheet" type="text/css" href="/static/css/chart.css"> -->
 <script type="text/javascript" src="/static/js/growthplot_chart.js"></script>
 
- <div class="row">
-    <div class="col-md-offset-3 col-md-6" style="padding:50px">  
-      {% include 'log_entry_form.html'%}
-    </div>
+<div class="row">
+  <div class="col-md-offset-3 col-md-6" style="padding:50px">  
+    {% include 'log_entry_form.html'%}
   </div>
+</div>
 
 <div class="col-md-12">
   <div class="child-profile">
@@ -68,29 +68,32 @@
   </div>
   {% endif %}
 
-    <!-- Chart -->
-    <div class="chart-display" class="col-md-12"></div>
+  <!-- Chart -->
+  <div class="chart-display" class="col-md-12"></div>
 
-    <!-- #TODO: Table -->
-    <div class="margin_top table-responsive">
-      <table class="no-spacing standard">
+  <div id="growthplot-table-div" class="margin_top table-responsive">
+    <table id="growthplot-table" class="display" cellspacing="0" width="100%">
+      <thead>
         <tr>
-          <th><div class="center">Date of Measurement</div></th>
-          <th><div class="center">Height/Length (cm)</div></th>
-          <th><div class="center">Weight (kg)</div></th>
-          <th><div class="center">Head Circumference (cm)</div></th>
-          <th><div class="center">BMI (kg/m^2)</div></th>
+          <th><div>Date of Measurement</div></th>
+          <th><div>Height/Length (cm)</div></th>
+          <th><div>Weight (kg)</div></th>
+          <th><div>Head Circumference (cm)</div></th>
+          <th><div>BMI (kg/m^2)</div></th>
         </tr>
+      </thead>
+      <tbody>
         {% for log_entry in log_entries %}
         <tr>
-          <td><div class="center">{{log_entry.date_of_measurement}}</div></td>
-          <td><div class="center">{{log_entry.length}}</div></td>
-          <td><div class="center">{{log_entry.weight}}</div></td>
-          <td><div class="center">{{log_entry.head_circumference}}</div></td>
-          <td><div class="center">{{log_entry.bmi}}</div></td>
+          <td><div>{{log_entry.date_of_measurement}}</div></td>
+          <td><div>{{log_entry.length}}</div></td>
+          <td><div>{{log_entry.weight}}</div></td>
+          <td><div>{{log_entry.head_circumference}}</div></td>
+          <td><div>{{log_entry.bmi}}</div></td>
         </tr>
         {% endfor %}
-      </table>
-    </div>
+      </tbody>
+    </table>
+  </div>
 
 </div>

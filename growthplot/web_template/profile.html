@@ -5,6 +5,10 @@
 
   <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
   <link rel="stylesheet" type="text/css" href="/static/css/growth_plot.css">
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+  <script type="text/javascript" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="/static/js/tableTools.js"></script>
+  <link rel="stylesheet" type="text/css" href="/static/css/tabletools.css">
 
 <!--   <div style="background-color:#22AF73; color:white; padding:10px;">
     <img src="/static/img/assets/LogoWhite(NavBar).png">
@@ -61,6 +65,17 @@
     context: document.body
   }).done(function (data) {
     $('#child-profile-display').html(data);
+    
+    var table = $('#growthplot-table').dataTable({        
+      //dom: 'T<"clear">lfrtip',
+      paging: false,
+      searching : false,});
+    
+    var tableTools = new $.fn.dataTable.TableTools(table, {
+     "buttons": ["copy", "csv", "xls", "pdf",{ "type": "print", "buttonText": "Print me!" }],
+     "sSwfPath": "//cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf" });
+    $(tableTools.fnContainer()).prependTo('#growthplot-table-div');
+
     $('#selected-child-input').val(currently_selected_child);
   }).fail( function (error) {
     console.log(error.responseText);
