@@ -12,15 +12,26 @@ def index(request):
 
 def login(request):
   if request.method == 'GET': 
-    return render(request, 'login.html', {})
+    return render(request, 'index.html', {})
   elif request.method == 'POST':
     message, user = controllers.get_profile(request)
-    if message and user:
-      return render(request, 'login.html', {'message' : message})
-    elif message and not user:
-      return render(request, 'register.html', {'message' : message})
-    else: 
+
+    if not message and user:
+      # loggedIn
       return redirect(profile)
+    if message and not user:
+      # wrong password
+      return render(request, 'index.html', {'message' : message})
+    if not message and not user:
+      # user does not exist
+      return render(request, 'register.html', {'message' : 'This user does not exist, please register'})
+
+    # if message and user:
+    #   return render(request, 'index.html', {'message' : message})
+    # elif message and not user:
+    #   return render(request, 'register.html', {'message' : message})
+    # else: 
+    #   return redirect(profile)
 
 def logout_user(request):
   logout(request)
@@ -34,7 +45,10 @@ def register(request):
     if message:
       return render(request, 'register.html', {'message' : message})
     else:
-      return render(request, 'login.html', {})
+      return render(request, 'index.html', {})
+
+def about(request):
+  return render(request, 'about.html', {})
 
 @login_required
 def profile(request):
@@ -42,18 +56,18 @@ def profile(request):
   children, children_json = controllers.get_children(request)
   if not children:
     info = "To begin using the system please register one or more children."
-    return render(request, 'add_children.html', {'info' : info})
+    return render(request, 'add_child.html', {'info' : info})
   else:
     return render(request, 'profile.html', {'children' : children, 'todays_date' : controllers.todays_date()})
 
 @login_required()
 def child(request):
   if request.method == 'GET':
-    return render(request, 'add_children.html', {})
+    return render(request, 'add_child.html', {})
   elif request.method == 'POST':
     message = controllers.add_child(request)
     if message:
-      return render(request, 'add_children.html', {'message' : message})
+      return render(request, 'add_child.html', {'message' : message})
     else:
       return redirect(profile)
 

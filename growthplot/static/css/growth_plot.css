@@ -1,15 +1,60 @@
+html {
+  font-size: 10px;
+
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 body {
-	font-family: "Lucida Grande", "Trebuchet MS", sans-serif;
-	color: #58595B;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #58595B;
+  background-color: #fff;
+}
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: #23527c;
+  text-decoration: underline;
+}
+a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+figure {
+  margin: 0;
+}
+header {
+	position: relative;
+	width: 100%;
+}
+img {
+  vertical-align: middle;
+}
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
-.log-entry-form-container {
+.growth_plot_container {
 	max-width: 410px;
 	margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  position: relative;
-  width:100%;
+	margin-right: auto;
+	margin-top: 20px;
+	position: relative;
+	width:100%;
 }
 
 .margin_top {
@@ -18,6 +63,10 @@ body {
 
 .margin_bottom {
 	margin-bottom: 30px;
+}
+
+.padding_md {
+  padding: 30px;
 }
 
 .float_left {
@@ -50,9 +99,22 @@ button.orange {
 	background: #FF5410;
 }
 
+button.yellow {
+	background: #FFA732;
+}
+
+button.red{
+  background: #FF5410;
+}
+
+button.grey {
+	background: #A6A8AB;
+}
+
 .header {
 	font-size: 180%;
 	line-height: 180%;
+	vertical-align: middle;
 }
 
 .inline_block {
@@ -107,8 +169,31 @@ button.orange {
 	width: 100%;
 }
 
-select#child-select  {
-	min-width: 230px;
+select {
+	color: #58595B;
+	padding: 7px;
+
+	float:right;
+
+	outline:none;
+
+	/*dropdown icon change*/
+  background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-position-x: 90%;
+}
+select.no-border {
+  border: none;
+}
+
+select::-ms-expand { /* for IE 11 */
+    display: none;
+}
+
+select#child_select {
+	width: 230px;
 	border-width: 3px;
 	-webkit-border-radius: 7px;
 	-moz-border-radius: 7px;
@@ -116,20 +201,15 @@ select#child-select  {
 	border-color: #58595B; 
 	font-size: 170%;
 	height: 55px;
-	line-height: 40px;
-	color: #58595B;
-	padding: 7px;
-	float:right;
-
-	/*dropdown icon change*/
-  background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-position-x: 190px;
+  margin-top: -4px;
 }
-select#child-select::-ms-expand { /* for IE 11 */
-    display: none;
+
+#child_input_form select#child_sex {
+	padding-top: 29px;
+	padding-left: 6px;
+	font-size: 125%;
+	background-position-x: 92%;
+	background-position-y: 37px;
 }
 
 table.no-spacing {
@@ -155,6 +235,12 @@ table.child_inputdata_table {
 	color: #58595B;
 	font-size: 180%;
 	position: absolute;
+	width: 100%;
+}
+
+#child_input_form input.checkbox {
+	position: static;
+  display: inline;
 }
 
 #child_input_form label, #child_input_form input {
@@ -163,7 +249,8 @@ table.child_inputdata_table {
 }
 
 #child_input_form label {
-  font-size: 100%;
+  font-size: 116%;
+  font-weight: 500;
   color: #58595B;
   letter-spacing: 0.03em;
   top: 6px;
@@ -205,3 +292,52 @@ table.standard {
 	width: 100%;
 }
 
+.move_down{
+	padding-top: 32px;
+}
+
+#child_input_form .register_button,
+.register_button {
+  border: 0;
+  padding: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  height: 15%;
+  /*background: #eee;*/
+  font-size: 180%;
+  font-weight: 700;
+  color: white;
+}
+
+#child_input_form .add_another_button {
+  border: 0;
+  padding: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  height: 15%;
+  /*background: #eee;*/
+  font-size: 180%;
+  font-weight: 700;
+  color: white;
+}
+
+#child_input_form input[type='checkbox'] {
+	position: static;
+	padding: 0;
+	display: inline;
+	white-space: nowrap;
+	width: auto;
+	margin-right: 10px;
+	vertical-align: baseline;
+
+	/*increase size of checkbox box*/
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  background: #9FFF9D;
+  padding: 10px;
+  margin-left: 6px;
+}

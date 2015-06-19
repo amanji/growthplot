@@ -51,17 +51,17 @@ def get_profile(request):
   if (password == ''):
     return "You must enter a password"
 
+  user = authenticate(username=email, password=password)
+  if user is not None:
+    # if user.is_active:
+    login(request, user)
+    return None, True
+    # else:
+    #   return "Your account has been disabled", True
   else:
-    user = authenticate(username=email, password=password)
-    if user is not None:
-      if user.is_active:
-        login(request, user)
-      else:
-        return "Your account has been disabled", True
-    else:
-      return "That user does not exist, please register.", None
-
-  return None, None
+    if(User.objects.filter(username=email).count()):
+      return "Wrong Password!", None
+    return None, None
 
 def chart(request):
   #TODO:
