@@ -1,0 +1,102 @@
+<div class="row">   
+  <div class="col-md-6">  
+    <div id="weight-for-age-female-birth-display">
+      <div id="chartdiv-weight-for-age-female-birth" style="width: 100%; height: 400px;"></div>
+    </div>
+  </div>
+  <div class="col-md-6">   
+    <div id="length-for-age-female-display">
+      <div id="chartdiv-length-for-age-female" style="width: 100%; height: 400px;"></div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div id="weight-for-length-female-display">
+      <div id="chartdiv-weight-for-length-female" style="width: 100%; height: 400px;"></div>
+    </div>
+  </div>
+  <div class="col-md-6">  
+    <div  id="head-circumference-female-display">
+      <div id="chartdiv-head-circumference-female" style="width: 100%; height: 400px;"></div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  var weight_for_age_female_sc = JSON.parse(standard_curves.weight_for_age_female_sc);
+  var length_for_age_female_sc = JSON.parse(standard_curves.length_for_age_female_sc);
+  var weight_for_length_female_sc = JSON.parse(standard_curves.weight_for_length_female_sc);
+  var head_circumference_female_sc = JSON.parse(standard_curves.head_circumference_female_sc);
+  
+  var child_data = {{ child_data|safe }};
+
+  var percentiles = ["p3", "p10", "p25", "p50", "p75", "p90", "p97"];
+
+  /* Chart1 */
+  var chart1Data = child_data.weight_for_age;
+  var graph1Data = [];
+
+  //Prepare the data
+  weight_for_age_female_sc.forEach(function (element, array, index){
+    chart1Data.push(element.fields);
+  });
+
+  percentiles.forEach(function (element, array, index) {
+    graph1Data.push(standard_curve(element, 'month', element));
+  });
+
+  graph1Data.push(plot_curve("weight", "month", "weight"));
+
+  var chart1 = AmCharts.makeChart("chartdiv-weight-for-age-female-birth", amcharts_properties(graph1Data, chart1Data, 0, 0));
+
+  /* Chart 2 */
+  var chart2Data = child_data.length_for_age;
+  var graph2Data = [];
+
+  //Prepare the data
+  length_for_age_female_sc.forEach(function (element, array, index){
+    chart2Data.push(element.fields);
+  });
+
+  percentiles.forEach(function (element, array, index) {
+    graph2Data.push(standard_curve(element, 'month', element));
+  });
+
+  graph2Data.push(plot_curve("length", "month", "length"));
+
+  var chart2 = AmCharts.makeChart("chartdiv-length-for-age-female", amcharts_properties(graph2Data, chart2Data, 0, 0));
+
+  /* Chart 3 */
+  var chart3Data = child_data.weight_for_length;
+  var graph3Data = [];
+
+  //Prepare the data
+  weight_for_length_female_sc.forEach(function (element, array, index){
+    chart3Data.push(element.fields);
+  });
+
+  percentiles.forEach(function (element, array, index) {
+    graph3Data.push(standard_curve(element, 'length', element));
+  });
+
+  graph3Data.push(plot_curve("weight", "length", "weight"));
+
+  var chart3 = AmCharts.makeChart("chartdiv-weight-for-length-female", amcharts_properties(graph3Data, chart3Data, 0, 0));
+
+  /* Chart 4 */
+  var chart4Data = child_data.head_circumference;
+  var graph4Data = [];
+
+  //Prepare the data
+  head_circumference_female_sc.forEach(function (element, array, index){
+    chart4Data.push(element.fields);
+  });
+
+  percentiles.forEach(function (element, array, index) {
+    graph4Data.push(standard_curve(element, 'month', element));
+  });
+
+  graph4Data.push(plot_curve("length", "month", "length"));
+
+  var chart4 = AmCharts.makeChart("chartdiv-head-circumference-female", amcharts_properties(graph4Data, chart4Data, 0, 0));
+</script>
