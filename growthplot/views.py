@@ -39,13 +39,12 @@ def register(request):
 @login_required
 def profile(request):
   #Authenticate user
-  standard_curves = controllers.get_standard_curves()
   children, children_json = controllers.get_children(request)
   if not children:
     info = "To begin using the system please register one or more children."
     return render(request, 'add_children.html', {'info' : info})
   else:
-    return render(request, 'profile.html', {'standard_curves' : standard_curves, 'children' : children, 'children_json' : children_json, 'todays_date' : controllers.todays_date()})
+    return render(request, 'profile.html', {'children' : children, 'todays_date' : controllers.todays_date()})
 
 @login_required()
 def child(request):
@@ -63,16 +62,19 @@ def child_profile(request):
   if request.method == 'GET':
     return redirect(profile)
   elif request.method == 'POST':
-    child_profile, child_data = controllers.get_child_profile(request)
-    return render(request, 'child_profile.html', {'child_profile' : child_profile, 'sex' : child_profile["sex"], 'less_than_2' : child_profile["less_than_2"], 'child_data' : child_data})
+    child_profile, log_entries = controllers.get_child_profile(request)
+    return render(request, 'child_profile.html', {'child_profile' : child_profile, 'sex' : child_profile["sex"], 'less_than_2' : child_profile["less_than_2"], 'log_entries' : log_entries})
 
 @login_required
-#TODO: Set for deprecation - no longer needed
-def data(request):
+#TODO:
+def chart(request):
   if request.method == 'GET':
     return redirect(profile)
   elif request.method == 'POST':
-    return None
+    # Get chart data
+    chart = controllers.chart(request)
+    #chart_data = {'chart' : chart, 'standard_curve' : standard_curve,}
+    return HttpResponse(chart, content_type = "application/json")
 
 @login_required
 def enter_log(request):

@@ -1,6 +1,12 @@
 <!-- <link rel="stylesheet" type="text/css" href="/static/css/chart.css"> -->
 <script type="text/javascript" src="/static/js/growthplot_chart.js"></script>
 
+ <div class="row">
+    <div class="col-md-offset-3 col-md-6" style="padding:50px">  
+      {% include 'log_entry_form.html'%}
+    </div>
+  </div>
+
 <div class="col-md-12">
   <div class="child-profile">
     <ul class="list-group">
@@ -27,8 +33,8 @@
     {% if child_profile.less_than_2 %}
     <li role="presentation" class="active"><a href="#male-birth" aria-controls="home" role="tab" data-toggle="tab">Male 0-24 months</a></li>
     {% else %}
-    <li role="presentation"><a href="#male-birth" aria-controls="home" role="tab" data-toggle="tab">Male 2-20 years</a></li>
-    <li role="presentation" class="active"><a href="#male" aria-controls="home" role="tab" data-toggle="tab">Male 0-24 months</a></li>
+    <li role="presentation"><a href="#male-birth" aria-controls="home" role="tab" data-toggle="tab">Male 0-24 months</a></li>
+    <li role="presentation" class="active"><a href="#male" aria-controls="home" role="tab" data-toggle="tab">Male 2-20 years</a></li>
     {% endif %}
     {% else %}
     {% if child_profile.less_than_2 %}
@@ -61,4 +67,30 @@
     {% endif %}
   </div>
   {% endif %}
+
+    <!-- Chart -->
+    <div class="chart-display" class="col-md-12"></div>
+
+    <!-- #TODO: Table -->
+    <div class="margin_top table-responsive">
+      <table class="no-spacing standard">
+        <tr>
+          <th><div class="center">Date of Measurement</div></th>
+          <th><div class="center">Height/Length (cm)</div></th>
+          <th><div class="center">Weight (kg)</div></th>
+          <th><div class="center">Head Circumference (cm)</div></th>
+          <th><div class="center">BMI (kg/m^2)</div></th>
+        </tr>
+        {% for log_entry in log_entries %}
+        <tr>
+          <td><div class="center">{{log_entry.date_of_measurement}}</div></td>
+          <td><div class="center">{{log_entry.length}}</div></td>
+          <td><div class="center">{{log_entry.weight}}</div></td>
+          <td><div class="center">{{log_entry.head_circumference}}</div></td>
+          <td><div class="center">{{log_entry.bmi}}</div></td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
 </div>

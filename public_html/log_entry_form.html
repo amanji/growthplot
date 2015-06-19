@@ -1,14 +1,4 @@
 <div>
-	<div class="margin_bottom">
-		<span class="bold header"> Select Child </span>
-		<select id="child-select">
-			{% if children %}
-			{% for child in children %}
-			<option id="{{child.id}}">{{child.name}}</option>
-			{% endfor %}
-			{% endif %}
-		</select>
-	</div>
 	<form class="span_12" id="child_input_form" action="enterlog" method="POST" enctype="application/x-www-form-urlencoded">{% csrf_token%}
 		<input type="hidden" id="selected-child-input" name="child-id">
 		<table class="no-spacing span_12 child_inputdata_table">
@@ -21,23 +11,27 @@
 
 			<tr>
 				<td class="span_6">
-					<input class="span_12" id="child_height" name="length" type="number" min="0" />
+					<input class="span_12" id="child_height" name="length" type="number" min="0" step="any"/>
 					<label for="child_height">Height/Length (cm)</label>
 				</td>
 				<td class="span_6">
-					<input class="span_12" id="child_weight" name="weight" type="number" min="0" />
+					<input class="span_12" id="child_weight" name="weight" type="number" min="0" step="any"/>
 					<label for="child_weight">Weight (kg)</label>
 				</td>
 			</tr>
 		</table>
+		{% if child_profile.less_than_2 %}
 		<table class="no-spacing span_12 child_inputdata_table">
 			<tr>
 				<td class="span_12">
-					<input class="span_12" id="head_circumference" name="head-circumference" type="number" min="0" />
+					<input class="span_12" id="head_circumference" name="head-circumference" type="number" min="0" step="any"/>
 					<label for="head_circumference">Head Circumference</label>
 				</td>
 			</tr>
 		</table>
+		{% else %}
+		<input class="span_12" id="head_circumference" type="hidden" name="head-circumference" type="number" min="0" step="any"/>
+		{% endif %}
 		<table class="no-spacing span_12 child_inputdata_table">
 			<tr>
 				<td colspan="2">
