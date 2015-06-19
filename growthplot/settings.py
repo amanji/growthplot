@@ -111,6 +111,8 @@ STATICFILES_FINDERS = (
    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'growthplot/static')
+
 STATIC_URL = '/static/'
 
 LOGIN_URL = '/login'
