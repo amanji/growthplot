@@ -93,7 +93,8 @@ function get_chart (el) {
     url: elem.data("url"),
     type: "POST",
     data: query_data,
-    context: document.body
+    context: document.body,
+    dataType: "json"
   }).done(function (data) {
     //console.log(data);
     write_chart(data);
