@@ -1,0 +1,96 @@
+<!-- <link rel="stylesheet" type="text/css" href="/static/css/chart.css"> -->
+<script type="text/javascript" src="/static/js/growthplot_chart.js"></script>
+
+ <div class="row">
+    <div class="col-md-offset-3 col-md-6" style="padding:50px">  
+      {% include 'log_entry_form.html'%}
+    </div>
+  </div>
+
+<div class="col-md-12">
+  <div class="child-profile">
+    <ul class="list-group">
+      <li class="list-group-item">        
+        <ul class="list-inline">
+          <li><small>Name </small><strong>{{child_profile.name}}</strong></li>
+          <li><small>Sex </small><strong>{{child_profile.sex}}</strong></li>
+          <li><small>DOB </small><strong>{{child_profile.dob}}</strong></li>
+          <li><small>Age </small><strong>{{child_profile.age}}</strong></li>
+        </ul>
+      </li>
+      <li class="list-group-item"><label>Height/Length (cm)<p>{{child_profile.last_length}}</p><small>{{child_profile.last_entry_date}}</small></label></li>
+      <li class="list-group-item"><label>Weight (kg)<p>{{child_profile.last_weight}}</p><small>{{child_profile.last_entry_date}}</small></label></li>
+      <li class="list-group-item"><label>Head Circumference (cm)<p>{{child_profile.last_head_circumference}}</p><small>{{child_profile.last_entry_date}}</small></label></li>
+      <li class="list-group-item"><label>BMI (kg/m^2)<p>{{child_profile.last_bmi}}</p><small>{{child_profile.last_entry_date}}</small></label></li>
+    </ul>
+  </div>
+</div>
+
+<div class="col-md-12">
+  {% if child_profile %}
+  <ul class="nav nav-pills nav-justified" role="tablist">
+    {%if child_profile.sex == "M" %}
+    {% if child_profile.less_than_2 %}
+    <li role="presentation" class="active"><a href="#male-birth" aria-controls="home" role="tab" data-toggle="tab">Male 0-24 months</a></li>
+    {% else %}
+    <li role="presentation"><a href="#male-birth" aria-controls="home" role="tab" data-toggle="tab">Male 0-24 months</a></li>
+    <li role="presentation" class="active"><a href="#male" aria-controls="home" role="tab" data-toggle="tab">Male 2-20 years</a></li>
+    {% endif %}
+    {% else %}
+    {% if child_profile.less_than_2 %}
+    <li role="presentation" class="active"><a href="#female-birth" aria-controls="home" role="tab" data-toggle="tab">Female 0-24 months</a></li>
+    {% else %}
+    <li role="presentation"><a href="#female-birth" aria-controls="home" role="tab" data-toggle="tab">Female 0-24 months</a></li>
+    <li role="presentation" class="active"><a href="#female" aria-controls="home" role="tab" data-toggle="tab">Female 2-20 years</a></li>
+    {% endif %}
+    {% endif %}
+  </ul>
+</div>
+
+<!-- Tab panes -->
+<div class="col-md-12">
+  <div class="tab-content">
+    {%if child_profile.sex == "M" %}
+    {% if child_profile.less_than_2 %}
+    <div role="tabpanel" class="tab-pane active" id="male-birth">{% include 'growthplot_who_cpeg_male_birth.html' %}</div>
+    {% else %}
+    <div role="tabpanel" class="tab-pane" id="male-birth">{% include 'growthplot_who_cpeg_male_birth.html' %}</div>
+    <div role="tabpanel" class="tab-pane active" id="male">{% include 'growthplot_who_cpeg_male.html' %}</div>
+    {% endif %}
+    {% else %}
+    {% if child_profile.less_than_2 %}
+    <div role="tabpanel" class="tab-pane active" id="female-birth">{% include 'growthplot_who_cpeg_female_birth.html' %}</div>
+    {% else %}
+    <div role="tabpanel" class="tab-pane" id="female-birth">{% include 'growthplot_who_cpeg_female_birth.html' %}</div>
+    <div role="tabpanel" class="tab-pane active" id="female">{% include 'growthplot_who_cpeg_female.html' %}</div>
+    {% endif %}
+    {% endif %}
+  </div>
+  {% endif %}
+
+    <!-- Chart -->
+    <div class="chart-display" class="col-md-12"></div>
+
+    <!-- #TODO: Table -->
+    <div class="margin_top table-responsive">
+      <table class="no-spacing standard">
+        <tr>
+          <th><div class="center">Date of Measurement</div></th>
+          <th><div class="center">Height/Length (cm)</div></th>
+          <th><div class="center">Weight (kg)</div></th>
+          <th><div class="center">Head Circumference (cm)</div></th>
+          <th><div class="center">BMI (kg/m^2)</div></th>
+        </tr>
+        {% for log_entry in log_entries %}
+        <tr>
+          <td><div class="center">{{log_entry.date_of_measurement}}</div></td>
+          <td><div class="center">{{log_entry.length}}</div></td>
+          <td><div class="center">{{log_entry.weight}}</div></td>
+          <td><div class="center">{{log_entry.head_circumference}}</div></td>
+          <td><div class="center">{{log_entry.bmi}}</div></td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+</div>
