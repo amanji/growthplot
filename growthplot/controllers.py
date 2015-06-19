@@ -14,29 +14,6 @@ from datetime import date, datetime
 from dateutil.relativedelta import relativedelta
 import json
 
-def get_standard_curves():
-  #TODO: Split these into Male and Female
-  standard_curves = {
-    'weight_for_length_male_sc' : serializers.serialize("json", WHO_Set2_Weight_For_Length_Male.objects.all()),
-    'weight_for_length_female_sc' : serializers.serialize("json", WHO_Set2_Weight_For_Length_Female.objects.all()),
-
-    'bmi_female_sc' : serializers.serialize("json", WHO_Set2_BMI_Female.objects.all()),
-    'bmi_male_sc' : serializers.serialize("json", WHO_Set2_BMI_Female.objects.all()),
-
-    'head_circumference_male_sc' :  serializers.serialize("json", WHO_Set2_Head_Circumference_Male.objects.all()),
-    'head_circumference_female_sc' :  serializers.serialize("json", WHO_Set2_Head_Circumference_Female.objects.all()),
-
-    'weight_for_age_male_sc' : serializers.serialize("json", WHO_Set2_Weight_For_Age_Male.objects.all()),
-    'weight_for_age_female_sc' : serializers.serialize("json", WHO_Set2_Weight_For_Age_Female.objects.all()),
-
-    'height_for_age_male_sc' : serializers.serialize("json", WHO_Set2_Height_For_Age_Male.objects.all()),
-    'height_for_age_female_sc' : serializers.serialize("json", WHO_Set2_Height_For_Age_Female.objects.all()),
-
-    'length_for_age_male_sc' : serializers.serialize("json", WHO_Set2_Length_For_Age_Male.objects.all()),
-    'length_for_age_female_sc' : serializers.serialize("json", WHO_Set2_Length_For_Age_Female.objects.all()),
-  }
-  return json.dumps(standard_curves)
-
 def verify_registration(request):
   email = request.POST["email"]
   password = request.POST["password"]
@@ -86,6 +63,220 @@ def get_profile(request):
 
   return None, None
 
+def chart(request):
+  #TODO:
+  chart_type = request.POST["chart"] + "-" + request.POST["age"];
+  chart = request.POST["chart"]
+  age_category = request.POST["age"]
+  child_id = request.POST["child_id"]
+  parent_id = request.user.id
+
+  chart_types = {
+  "weight-for-age-female-" : get_weight_for_age(child_id, parent_id, age_category, "F"),
+  "weight-for-age-male-" : get_weight_for_age(child_id, parent_id, age_category, "M"),
+  "height-for-age-female-" : get_height_for_age(child_id, parent_id, age_category, "F"),
+  "height-for-age-male-" : get_height_for_age(child_id, parent_id, age_category, "M"),
+  "bmi-female-" : get_bmi(child_id, parent_id, age_category, "F"),
+  "bmi-male-" : get_bmi(child_id, parent_id, age_category, "M"),
+  "weight-for-age-female-birth" : get_weight_for_age(child_id, parent_id, age_category, "F"),
+  "weight-for-age-male-birth" : get_weight_for_age(child_id, parent_id, age_category, "M"),
+  "length-for-age-female-birth" : get_height_for_age(child_id, parent_id, age_category, "F"),
+  "length-for-age-male-birth" : get_height_for_age(child_id, parent_id, age_category, "M"),
+  "weight-for-length-female-birth" : get_weight_for_length(child_id, parent_id, age_category, "F"),
+  "weight-for-length-male-birth" : get_weight_for_length(child_id, parent_id, age_category, "M"),
+  "head-circumference-female-birth" : get_head_circumference(child_id, parent_id, age_category, "F"),
+  "head-circumference-male-birth" : get_head_circumference(child_id, parent_id, age_category, "M"),
+  }
+  
+  # Get relevant chart
+  chart_data = chart_types[chart_type]
+
+  return chart_data
+
+def get_head_circumference(child_id, parent_id, age_category, sex):
+  log_entries = get_log_entries(child_id)
+
+  if sex == "F":
+    standard_curve = WHO_Set2_Head_Circumference_Female.objects.all()
+  else:
+    standard_curve = WHO_Set2_Head_Circumference_Male.objects.all()
+
+  chart_data = {
+    'xAxis' : "Age (months)",
+    'yAxis' : "Head Circumference (cm)",
+    'data' : [],
+    'standard_curve' : [],
+    'title' : "Head Circumference"
+  }
+
+  for log_entry in log_entries:
+    if log_entry.birth:
+      age_months = round((log_entry.age/365.2425)*12,1)
+      chart_data['data'].append({"Head Circumference (cm)" : log_entry.head_circumference, "Age (months)" : age_months})
+
+  for sc_entry in standard_curve:
+    chart_data['standard_curve'].append({"p3" : sc_entry.p3, "p10" : sc_entry.p10, "p25" : sc_entry.p25, "p50" : sc_entry.p50, "p75" : sc_entry.p75, "p90" : sc_entry.p90, "p97" : sc_entry.p97, "Age (months)" : sc_entry.month, 'label' : False})
+  
+  return json.dumps(chart_data)
+
+
+def get_weight_for_length(child_id, parent_id, age_category, sex):
+  log_entries = get_log_entries(child_id)
+
+  if sex == "F":
+    standard_curve = WHO_Set2_Weight_For_Length_Female.objects.all()
+  else:
+    standard_curve = WHO_Set2_Weight_For_Length_Male.objects.all()
+
+  chart_data = {
+    'xAxis' : "Length (cm)",
+    'yAxis' : "Weight (kg)",
+    'data' : [],
+    'standard_curve' : [],
+    'title' : "Weight for Length"
+  }
+
+  for log_entry in log_entries:
+    if log_entry.birth:
+      chart_data['data'].append({"Weight (kg)" : log_entry.weight, "Length (cm)" : log_entry.length})
+
+  for sc_entry in standard_curve:
+    chart_data['standard_curve'].append({"p3" : sc_entry.p3, "p10" : sc_entry.p10, "p25" : sc_entry.p25, "p50" : sc_entry.p50, "p75" : sc_entry.p75, "p90" : sc_entry.p90, "p97" : sc_entry.p97, "Length (cm)" : sc_entry.length, 'label' : False})
+  
+  return json.dumps(chart_data)
+
+
+def get_weight_for_age(child_id, parent_id, age_category, sex):
+  # Set yMin and yMax
+  log_entries = get_log_entries(child_id)
+
+  if sex == "F":
+    standard_curve = WHO_Set2_Weight_For_Age_Female.objects.all()
+  else:
+    standard_curve = WHO_Set2_Weight_For_Age_Male.objects.all()
+
+  if age_category == 'birth':
+
+    chart_data = {
+      'xAxis' : "Age (months)",
+      'yAxis' : "Weight (kg)",
+      'data' : [],
+      'standard_curve' : [],
+      'title' : "Weight for Age"
+    }
+
+    for log_entry in log_entries:
+      if log_entry.birth:
+        age_months = round((log_entry.age/365.2425)*12,1)
+        chart_data['data'].append({"Weight (kg)" : log_entry.weight, "Age (months)" : age_months})
+
+    for sc_entry in standard_curve:
+      if sc_entry.month <= 24:
+        chart_data['standard_curve'].append({"p3" : sc_entry.p3, "p10" : sc_entry.p10, "p25" : sc_entry.p25, "p50" : sc_entry.p50, "p75" : sc_entry.p75, "p90" : sc_entry.p90, "p97" : sc_entry.p97, "Age (months)" : sc_entry.month, 'label' : False})
+    
+  else:
+
+    chart_data = {
+      'xAxis' : "Age (years)",
+      'yAxis' : "Weight (kg)",
+      'data' : [],
+      'standard_curve' : [],
+      'title' : "Weight for Age"
+    }
+
+    for log_entry in log_entries:
+      age_years = round((float(log_entry.age)/365.2425), 1)
+      chart_data['data'].append({"Weight (kg)" : log_entry.weight, "Age (years)" : age_years})
+
+    for sc_entry in standard_curve:
+      age_years = round((float(sc_entry.month)/12), 1)
+      chart_data['standard_curve'].append({"p3" : sc_entry.p3, "p10" : sc_entry.p10, "p25" : sc_entry.p25, "p50" : sc_entry.p50, "p75" : sc_entry.p75, "p90" : sc_entry.p90, "p97" : sc_entry.p97, "Age (years)" : age_years, 'label' : False})
+
+  return json.dumps(chart_data)
+
+def get_height_for_age(child_id, parent_id, age_category, sex):
+  # Set yMin and yMax
+  log_entries = get_log_entries(child_id)
+
+  if age_category == 'birth':
+
+    if sex == "F":
+      standard_curve = WHO_Set2_Length_For_Age_Female.objects.all()
+    else:
+      standard_curve = WHO_Set2_Length_For_Age_Male.objects.all()
+
+
+    chart_data = {
+      'xAxis' : "Age (months)",
+      'yAxis' : "Length (cm)",
+      'data' : [],
+      'standard_curve' : [],
+      'title' : "Length for Age"
+    }
+
+    for log_entry in log_entries:
+      if log_entry.birth:
+        age_months = round((log_entry.age/365.2425)*12,1)
+        chart_data['data'].append({"Length (cm)" : log_entry.length, "Age (months)" : age_months})
+
+    for sc_entry in standard_curve:
+      if sc_entry.month <= 24:
+        chart_data['standard_curve'].append({"p3" : sc_entry.p3, "p10" : sc_entry.p10, "p25" : sc_entry.p25, "p50" : sc_entry.p50, "p75" : sc_entry.p75, "p90" : sc_entry.p90, "p97" : sc_entry.p97, "Age (months)" : sc_entry.month, 'label' : False})
+    
+  else:
+
+    if sex == "F":
+      standard_curve = WHO_Set2_Height_For_Age_Female.objects.all()
+    else:
+      standard_curve = WHO_Set2_Height_For_Age_Male.objects.all()
+
+
+    chart_data = {
+      'xAxis' : "Age (years)",
+      'yAxis' : "Height (cm)",
+      'data' : [],
+      'standard_curve' : [],
+      'title' : "Height for Age"
+    }
+
+    for log_entry in log_entries:
+      age_years = round((float(log_entry.age)/365.2425), 1)
+      chart_data['data'].append({ "Height (cm)" : log_entry.length, "Age (years)" : age_years})
+
+    for sc_entry in standard_curve:
+      age_years = round((float(sc_entry.month)/12), 1)
+      chart_data['standard_curve'].append({"p3" : sc_entry.p3, "p10" : sc_entry.p10, "p25" : sc_entry.p25, "p50" : sc_entry.p50, "p75" : sc_entry.p75, "p90" : sc_entry.p90, "p97" : sc_entry.p97, "Age (years)" : age_years, 'label' : False})
+
+  return json.dumps(chart_data)
+
+
+def get_bmi(child_id, parent_id, age_category, sex):
+  # Set yMin and yMax
+  log_entries = get_log_entries(child_id)
+
+  if sex == "F":
+    standard_curve = WHO_Set2_BMI_Female.objects.all()
+  else:
+    standard_curve = WHO_Set2_BMI_Male.objects.all()
+
+  chart_data = {
+  'xAxis' : "Age (years)",
+  'yAxis' : "BMI (kg/m^2)",
+  'data' : [],
+  'standard_curve' : [],
+  'title' : "BMI for Age"
+  }
+
+  for log_entry in log_entries:
+    age_years = round((float(log_entry.age)/365.2425), 1)
+    chart_data['data'].append({"BMI (kg/m^2)" : log_entry.weight, "Age (years)" : age_years})
+
+  for sc_entry in standard_curve:
+    age_years = round((float(sc_entry.month)/12), 1)
+    chart_data['standard_curve'].append({"p3" : sc_entry.p3, "p10" : sc_entry.p10, "p25" : sc_entry.p25, "p50" : sc_entry.p50, "p75" : sc_entry.p75, "p85" : sc_entry.p85, "p97" : sc_entry.p97, "Age (years)" : age_years})
+  
+  return json.dumps(chart_data)
+
 def add_child(request):
   parent_id = request.user.id
   name = request.POST["name"]
@@ -133,43 +324,23 @@ def get_child_profile(request):
     'last_bmi' : None
   }
 
-  log_entries = get_log_entries(child_id)
+  log_entries = get_log_entries(child_id, True)
   
   last_entry_length = len(log_entries)
   if last_entry_length != 0:
-    last_entry = log_entries[len(log_entries)-1]
+    last_entry = log_entries[0]
     child_profile["last_entry_date"] = 'as of ' + last_entry.date_of_measurement.strftime("%d%b%Y")
     child_profile["last_weight"] = last_entry.weight
     child_profile["last_length"] = last_entry.length
     child_profile["last_head_circumference"] = last_entry.head_circumference
     child_profile["last_bmi"] = last_entry.bmi
 
-  
-  child_data = {
-    'weight_for_age' : [],
-    'height_for_age' : [],
-    'length_for_age' : [],
-    'weight_for_length' : [],
-    'head_circumference' : []
-  };
-
-  # TODO: Prepare the rest of the entries
-  for log_entry in log_entries:
-    age_months = round((float(log_entry.age)/365.2425)*12, 1)
-    child_data['weight_for_age'].append({"weight" : log_entry.weight, "month" : age_months})
-    if not log_entry.birth:
-      child_data['height_for_age'].append({"height" : log_entry.length, "month" : age_months})
-    if log_entry.birth:
-      child_data['length_for_age'].append({"length" : log_entry.length, "month" : age_months}) 
-
-  return child_profile, json.dumps(child_data)
+  return child_profile, log_entries
 
 def enter_log(request):
   # TODO: Use a form validation library
   # TODO: Check valid inputs
-
   parent_id = request.user.id
-
   child_id = request.POST["child-id"]
   date_of_measurement = request.POST["date-of-measurement"]
   length = request.POST["length"]
@@ -185,12 +356,15 @@ def enter_log(request):
   age_days = age_in_days(_dob, _dom)
   age_years_boolean = (relative_age_in_years(_dob, _dom) < 2)
 
-  log_entry = Log_Entry(child_id=child_id, date_of_measurement=date_of_measurement, date_of_entry=todays_date(), length=round(float(length), 1), weight=round(float(weight),1), bmi=round(bmi(weight, length),1), age=age_days, birth=age_years_boolean)
+  log_entry = Log_Entry(child_id=child_id, date_of_measurement=date_of_measurement, date_of_entry=todays_date(), length=round(float(length), 1), weight=round(float(weight),1), bmi=round(bmi(weight, length),1), head_circumference=round(float(head_circumference),1), age=age_days, birth=age_years_boolean)
   log_entry.save()
   return None
 
-def get_log_entries(child_id):
-  all_log_entries = Log_Entry.objects.filter(child_id=child_id).order_by('date_of_measurement').all()
+def get_log_entries(child_id, desceding_order=None):
+  if desceding_order:
+    all_log_entries = Log_Entry.objects.filter(child_id=child_id).order_by('-date_of_measurement').all()
+  else:
+    all_log_entries = Log_Entry.objects.filter(child_id=child_id).order_by('date_of_measurement').all()
   return all_log_entries
 
 # Helper functions
