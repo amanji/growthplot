@@ -348,6 +348,9 @@ def enter_log(request):
   head_circumference = request.POST["head-circumference"]
   location = request.POST["location"]
 
+  if head_circumference == None or head_circumference == '':
+    head_circumference = None
+
   child_profile_obj = Child.objects.filter(parent_id=parent_id, id=child_id).all()
 
   _dob = datetime.strptime(child_profile_obj[0].date_of_birth.strftime("%Y-%m-%d"), "%Y-%m-%d")
@@ -356,7 +359,7 @@ def enter_log(request):
   age_days = age_in_days(_dob, _dom)
   age_years_boolean = (relative_age_in_years(_dob, _dom) < 2)
 
-  log_entry = Log_Entry(child_id=child_id, date_of_measurement=date_of_measurement, date_of_entry=todays_date(), length=round(float(length), 1), weight=round(float(weight),1), bmi=round(bmi(weight, length),1), head_circumference=round(float(head_circumference),1), age=age_days, birth=age_years_boolean)
+  log_entry = Log_Entry(child_id=child_id, date_of_measurement=date_of_measurement, date_of_entry=todays_date(), length=round(float(length), 1), weight=round(float(weight),1), bmi=round(bmi(weight, length),1), head_circumference=head_circumference, age=age_days, birth=age_years_boolean)
   log_entry.save()
   return None
 
