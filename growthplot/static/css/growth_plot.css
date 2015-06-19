@@ -323,6 +323,15 @@ table.standard {
   color: white;
 }
 
+@media(min-width:992px){
+   .col-md-6.left-column{
+    padding-left: 10%;
+   }
+    .col-md-6.right-column{
+    padding-right: 10%;
+   }
+}
+
 #child_input_form input[type='checkbox'] {
 	position: static;
 	padding: 0;
