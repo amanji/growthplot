@@ -65,6 +65,10 @@ img {
 	margin-bottom: 30px;
 }
 
+.padding_md {
+  padding: 30px;
+}
+
 .float_left {
 	float: left;
 }
