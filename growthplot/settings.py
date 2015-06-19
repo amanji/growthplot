@@ -56,7 +56,7 @@ ROOT_URLCONF = 'growthplot.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'public_html/web_template')],
+        'DIRS': [os.path.join(BASE_DIR, 'growthplot/web_template')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
