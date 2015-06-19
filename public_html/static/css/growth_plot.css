@@ -99,6 +99,10 @@ button.yellow {
 	background: #FFA732;
 }
 
+button.red{
+  background: #FF5410;
+}
+
 button.grey {
 	background: #A6A8AB;
 }
