@@ -1,7 +1,3 @@
-<p>Growthplot WHO CPEG Head Circumference Male</p>
-<div id="chartdiv" style="width: 100%; height: 800px;"></div>
-
-<style type="text/css">
   #chartdiv {
     width   : 100%;
     height    : 500px;
@@ -66,41 +62,3 @@
       stroke-dashoffset: 0%;
     }
   }
-</style>
-
-<script type="text/javascript">
-
-  var head_circumference_male = {{ head_circumference_male|safe }};
-
-  var percentiles = ["p3", "p10", "p25", "p50", "p75", "p90", "p97"];
-
-  var chartData = [];
-
-  var graphData = [];
-
-  //Prepare the data
-  head_circumference_male.forEach(function (element, array, index){
-    chartData.push(element.fields);
-  });
-
-  percentiles.forEach(function (element, array, index) {
-    var graph = {
-      'id' : element,
-      "lineAlpha": 1,
-      "valueField": 0,
-      "xField": "month",
-      "yField": element,
-      "lineColor" : "#d1655d",
-      "lineThickness" : 2
-    };
-    graphData.push(graph);
-  });
-
-  var chart = AmCharts.makeChart("chartdiv",{
-    "type": "xy",
-    "graphs": graphData,
-    "dataProvider": chartData,
-    "addClassNames" : true
-  });
-
-</script>
