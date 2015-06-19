@@ -27,7 +27,8 @@ urlpatterns = [
     url(r'^profile', views.profile),
     url(r'^chart', views.chart),
     url(r'^data', views.child_profile),
-    url(r'^enterlog', views.enter_log)
+    url(r'^enterlog', views.enter_log),
+    url(r'^about', views.about)
     #url(r'^standard_curve_example$', views.standard_curve_example),
     #url(r'^admin/', include(admin.site.urls)),
 ]

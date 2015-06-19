@@ -1,6 +1,8 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+	
 	<head>
-
+		{% include 'head.html' %}
 		<link rel="stylesheet" type="text/css" href="../static/css/reset.css">
 		<link rel="stylesheet" type="text/css" href="../static/css/growth_plot.css">
 		<link rel="stylesheet" type="text/css" href="../static/css/growth_plot_register.css">
@@ -17,7 +19,7 @@
 
 		<div class="growth_plot_container">
 
-			<h2 style="font-size: 1.7em;">Please input information</h2>
+			<h2 style="font-size: 1.7em;font-weight: 700;">Please input information</h2>
 			<br>
 				<form class="span_12" id="child_input_form" action="/child" method="POST" enctype="application/x-www-form-urlencoded">
 				<!-- hidden token field -->

@@ -47,6 +47,9 @@ def register(request):
     else:
       return render(request, 'index.html', {})
 
+def about(request):
+  return render(request, 'about.html', {})
+
 @login_required
 def profile(request):
   #Authenticate user
