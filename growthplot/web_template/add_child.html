@@ -1,0 +1,70 @@
+<html>
+	<head>
+
+		<link rel="stylesheet" type="text/css" href="../static/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="../static/css/growth_plot.css">
+		<link rel="stylesheet" type="text/css" href="../static/css/growth_plot_register.css">
+
+		<title>Add Additional Child</title>
+	</head>
+
+	<body>
+
+		<div style="background-color:#22AF73; color:white; padding:10px;">
+			<img src="../static/img/assets/LogoWhite(NavBar).png">
+		</div>
+		<!-- <br> -->
+
+		<div class="growth_plot_container">
+
+			<h2 style="font-size: 1.7em;">Please input information</h2>
+			<br>
+				<form class="span_12" id="child_input_form">
+					<table class="no-spacing span_12 child_inputdata_table" id="register_child_table">
+						<tr>
+							<td colspan="2">
+								<input class="span_12" id="child_name" type="text"/>
+								<label for="child_name">Name</label>
+							</td>
+						</tr>
+						<tr>
+							<td class="span_4">
+								<select id="child_sex" class="span_12 no-border">
+									<option value="Female">Female</option>
+									<option value="Male">Male</option>
+								 </select>
+								<label for="child_sex">Sex</label>
+							</td>
+							<td class="span_8">
+								<input class="span_12" id="date_of_birth" type="date"/>
+								<label for="date_of_birth">Date of Birth</label>
+							</td>
+						</tr>
+					</table>
+					<button type="submit" class="float_right red" style="margin-top: 22px; height: 60px; font-size: 202%; font-weight: 300">
+							Submit
+					</button>
+					<button id="add_another_child_button" class="add_another_button grey" style="margin-top: 22px; height: 40px; font-size: 170%;
+					font-weight: 500" onclick="duplicate()">
+							+ Add Another
+					</button>
+
+
+				
+				</form>
+		</div>
+		<script>
+
+
+var i = 0;
+var original = document.getElementById("register_child_table");
+
+function duplicate() {
+    var clone = original.cloneNode(true); // "deep" clone
+    clone.id = "d" + ++i; // there can only be one element with an ID
+    original.parentNode.appendChild(clone);
+}
+
+		</script>
+	</body>
+</html>

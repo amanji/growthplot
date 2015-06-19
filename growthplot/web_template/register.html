@@ -1,12 +1,18 @@
 
 <html>
+	<head>
 
-	{% include 'head.html' %}
+		<link rel="stylesheet" type="text/css" href="../static/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="../static/css/growth_plot.css">
+		<link rel="stylesheet" type="text/css" href="../static/css/growth_plot_register.css">
+
+		<title>Add child</title>
+	</head>
 
 	<body>
 
 		<div style="background-color:#22AF73; color:white; padding:10px;">
-			<img src="/static/img/assets/LogoWhite(NavBar).png">
+			<img src="../static/img/assets/LogoWhite(NavBar).png">
 		</div>
 		<!-- <br> -->
 
@@ -16,23 +22,25 @@
 			<br>
 			<h2>Step 1: Login Information</h2>
 			<br>
-				<form class="span_12" id="child_input_form">
+				<form class="span_12" id="child_input_form" action="/register" method="POST" >
+					<!-- Hidden input with token to ensure security -->
+					{% csrf_token %}
 					<table class="no-spacing span_12 child_inputdata_table">
 						<tr>
 							<td>
-								<input class="span_12" id="email" type="email"/>
+								<input class="span_12" id="email" name="email" type="email"/>
 								<label for="email">Email</label>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<input class="span_12" id="password" type="password"/>
+								<input class="span_12" id="password" name="password" type="password"/>
 								<label for="password">Password</label>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<input class="span_12" id="confirm_password" type="password"/>
+								<input class="span_12" id="confirm_password" name="confirm-password" type="password"/>
 								<label for="confirm_password">Confirm Password</label>
 							</td>
 						</tr>
@@ -49,31 +57,9 @@
 					</button>
 				
 				</form>
-				<!-- <form id="child_input_form">
-					<table class="no-spacing span_12" id="child_inputdata_table">
-						<tr>
-							<td colspan="2">
-								<input id="child_date" type="date"/>
-								<label for="child_date">Date of Birth</label>
-							</td>
-						</tr>
-
-						<tr>
-							<td class="span_6">
-								<select class="span_12">
-	                            <option value="Female">Female</option>
-	                            <option value="Male">Male</option>
-	                             </select>
-								<label for="child_sex">Sex</label>
-							</td>
-							<td class="span_6">
-								<input class="span_12" id="child_name" type="text"  />
-								<label for="child_name">Name</label>
-							</td>
-						</tr>
-					</table>
-					<center><button type="button" class="btn btn-primary">Submit</button></center>
-				</form> -->
+				{%if message %}
+					<div class="alert alert-danger" role="alert">{{message|safe}}</div>
+				{% endif %}
 		</div>
 	</body>
 </html>
