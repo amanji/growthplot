@@ -89,13 +89,21 @@ function get_chart (el) {
   };
 
   //Set up AJAX request for graph data
-  $.ajax({
+/*  $.ajax({
     url: elem.data("url"),
     type: "POST",
     data: query_data,
     context: document.body,
     dataType: "json"
   }).done(function (data) {
+    //console.log(data);
+    write_chart(data);
+  }).fail( function (error) {
+    console.log(error.responseText);
+  });
+*/
+
+$.post( elem.data("url"), query_data ).done(function (data) {
     //console.log(data);
     write_chart(data);
   }).fail( function (error) {
