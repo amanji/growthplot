@@ -59,18 +59,9 @@ body.slide-active {
     position: relative
 }
 
-/*navbar changes by me*/
- .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a{
-  background-color: #22AF73;
-  color: #fff;
-}
 
-.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
-  background-color: #22AF73;
-  border-bottom:4px solid rgba(255,255,255,.65); !important;
-  
 
-}
+
 
  .navbar-nav>li>a{
   line-height:40px;
@@ -83,7 +74,7 @@ body.slide-active {
 }
   
 /* screw writing importants and shit, just stick it in max width since these classes are not shared between sizes */
-@media (max-width:767px) { 
+@media (max-width:766px) { 
   #slide-nav .container {
       margin: 0!important;
       padding: 0!important;
@@ -92,6 +83,7 @@ body.slide-active {
   #slide-nav .navbar-header {
       margin: 0 auto;
       padding: 0 15px;
+      z-index: 0;
   }
   #slide-nav .navbar.slide-active {
       position: absolute;
@@ -100,9 +92,9 @@ body.slide-active {
       z-index: 1000;
   }
   #slide-nav #slidemenu {
-      background: #22AF73;
+      background: #58595B;
       left: -100%;
-      width: 30%;
+      width: 60%;
       min-width: 0;
       position: absolute;
       padding-left: 0;
@@ -114,19 +106,19 @@ body.slide-active {
       min-width: 0;
       width: 100%;
       margin: 2% 0 0 0;
-    background: #22AF73;
+    background: #58595B;
     
   }
   #slide-nav #slidemenu .navbar-nav .dropdown-menu li a {
       min-width: 0;
-      width: 30%;
+      width: 60%;
       white-space: normal;
   }
   #slide-nav {
       border-top: 0
   }
   #slide-nav.navbar-inverse #slidemenu {
-      background: ##22AF73
+      background: #58595B;
   }
   /* this is behind the navigation but the navigation is not inside it so that the navigation is accessible and scrolls*/
   #navbar-height-col {
@@ -134,12 +126,12 @@ body.slide-active {
       top: 0;
       height: 100%;
       bottom:0;
-      width: 30%;
+      width: 60%;
       left: -80%;
-      background: #22AF73;
+      background: #58595B;
   }
   #navbar-height-col.inverse {
-      background: #22AF73;
+      background: #58595B;
       z-index: 1;
       border: 0;
   }
@@ -148,7 +140,7 @@ body.slide-active {
       margin: 8px 0;
       text-align: center;
       overflow: hidden;
-      /*fast clearfixer*/
+      /*fast cearfixer*/
   }
   #slide-nav .navbar-form .form-control {
       text-align: center
@@ -156,8 +148,52 @@ body.slide-active {
   #slide-nav .navbar-form .btn {
       width: 100%
   }
+
+  /*navbar changes by me*/
+  .navbar-inverse .navbar-nav>li>a{
+  background-color: #58595B;
+  color: #fff;
+  }
+
+  .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
+  background-color: #58595B;
+  }
+
+  .img-container2{
+  	width: 100%;
+  	height: 60px;
+  	padding-bottom: 10%;
+	border-bottom:4px solid rgba(255,255,255,.65); !important;
+  }
+
+  .img-container2 img {
+  	width: 100%;
+  	padding: 5% 10%
+  }
+
+  .navbar-nav li {
+  	padding: 5% 30%;
+  	font-size: 1.2em;
+  	border-width: 60%;
+  	font-weight: bold;
+  	
+
+  }
+
+  .navbar-nav li {
+  	padding: 5% 10%;
+  }
+
+  .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
+  	color: #FFA732;
+  }
+
+  .navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover {
+  	color: #FFA732;
+  }
+
 }
-@media (min-width:768px) { 
+@media (min-width:765px) { 
   #page-content {
       left: 0!important
   }
@@ -175,6 +211,17 @@ body.slide-active {
     vertical-align: middle;
     display: inline-block;
   }
+
+  /*navbar changes by me*/
+ .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a{
+  background-color: #22AF73;
+  color: #fff;
+ }
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
+  background-color: #22AF73;
+  border-bottom:4px solid rgba(255,255,255,.65); !important;
+ }
   
 }
 </style>
@@ -194,7 +241,8 @@ $(document).ready(function () {
     var menuwidth = '100%'; // the menu inside the slide menu itself
     var slidewidth = '0%';
     var menuneg = '-100%';
-    var slideneg = '-30%';
+    var slideneg = '-60%';
+    var speed = 200;
 
     $(document).mouseup(function (e)
 	
@@ -206,19 +254,13 @@ $(document).ready(function () {
     {
         $('#slidemenu').stop().animate({
             left: menuneg
-        });
+        },$(window).width() /50 + speed);
 
         $('#navbar-height-col').stop().animate({
             left: slideneg
-        });
+        }, speed);
 
-        $(pagewrapper).stop().animate({
-            left: '0px'
-        });
-
-        $(navigationwrapper).stop().animate({
-            left: '0px'
-        });
+        $(this).toggleClass('slide-active', !selected);
 
     }
 	});
@@ -227,24 +269,6 @@ $(document).ready(function () {
     $("#slide-nav").on("click", toggler, function (e) {
 
         var selected = $(this).hasClass('slide-active');
-        /*
-        $('#slidemenu').stop().animate({
-            left: selected ? menuneg : '0px'
-        });
-
-        $('#navbar-height-col').stop().animate({
-            left: selected ? slideneg : '0px'
-        });
-
-        $(pagewrapper).stop().animate({
-            left: selected ? '0px' : slidewidth
-        });
-
-        $(navigationwrapper).stop().animate({
-            left: selected ? '0px' : slidewidth
-        });
-        */
-
 
         $('#slidemenu').stop().animate({
             left: '0px'
@@ -254,19 +278,7 @@ $(document).ready(function () {
             left: '0px'
         });
 
-        $(pagewrapper).stop().animate({
-            left: slidewidth
-        });
 
-        $(navigationwrapper).stop().animate({
-            left: slidewidth
-        });
-
-        
-
-        
-
-        // $(this).toggleClass('slide-active', !selected);
         $('#slidemenu').toggleClass('slide-active');
 
 
@@ -281,8 +293,12 @@ $(document).ready(function () {
 
     $(window).on("resize", function () {
 
-        if ($(window).width() > 767 && $('.navbar-toggle').is(':hidden')) {
+        if ($(window).width() > 766 && $('.navbar-toggle').is(':hidden')) {
             $(selected).removeClass('slide-active');
+            $('.img-container2').hide();
+        }
+        if ($(window).width() <= 766 ) {
+            $('.img-container2').show();
         }
 
 
@@ -309,9 +325,10 @@ $(document).ready(function () {
    </div>
    <div id="slidemenu">
     <ul class="nav navbar-nav">
+     <li> <div class="img-container2"><img src="/static/img/assets/LogoWhite(NavBar).png" ></div></li>
      <li class="active"><a href="#">Home</a></li>
      <li><a href="/about">About</a></li>
-     <li><a href="/login">Login</a></li>
+     
    	 <li><a href="/register">Register</a></li>
    	 <li><a href="/child">Add Child</a></li>
    	 <li><a href="/profile">Growth Charts</a></li>
