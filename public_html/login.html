@@ -3,56 +3,25 @@
 
 {% include 'head.html' %}
 
-{% include 'navigation.html' %}
+<body>
 
-<h1>Welcome back!</h1>
-<br>
-<center>
-	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV1l2x22FXj5xXwl364GtNCla5cwquZDqSzgN1drX0q8R9CCGJ"/>
-</center>
-<div class="row">
-	<div class="col-md-12">
-		<form id="login-register-form" class="form">{% csrf_token %}
-			<ul>
-				<li>
-					<input id="email" name="email" type="email" />
-					<label for="email">Email</label>
-				</li>
-				<li>
-					<input id="password" name="password" type="password" />
-					<label for="password">Password</label>
-				</li>
-				
-			</ul>
-
-			<p style="margin-left: -230px; font-size: 17px"><a href="#">Forgot Password?</a></p>
-			<button id="login-button" type="button" class="btn btn-primary btn-lg">Log In</button>
-			<button id="register-button" type="button" class="btn btn-primary btn-lg">Register</button>
-		</form>
+	<div style="background-color:#22AF73; color:white; padding:10px;">
+		<img src="/static/img/assets/LogoWhite(NavBar).png">
 	</div>
-</div>
 
-	{%if message %}
-	<div class="alert alert-danger" role="alert">{{message}}</div>
-	{% endif %}
+	<div class="container">
 
-</html>
+		<h1>Welcome back!</h1>
+		<p>Please login to continue tracking your childs growth</p>
+		<br>
 
-<script type="text/javascript">
-$('#register-button').click(function (e) {
-	e.preventDefault();
-	var form = $('#login-register-form');
-	form.attr("action", "/register");
-	form.attr("method", "GET");
-	form.submit();
-});
+		<div class="row">
+		<div class="col-md-12">	
+			{% include 'login_form.html' %}
+		</div>
+		</div>
 
-$('#login-button').click(function (e) {
-	e.preventDefault();
-	var form = $('#login-register-form');
-	form.attr("action", "/login");
-	form.attr("method", 'POST');
-	form.submit();
-});
+	</body>
+	</html>
 
-</script>
+
