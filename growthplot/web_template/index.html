@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+	
 	<head>
+		{% include 'head.html' %}
 		<link rel="stylesheet" type="text/css" href="../static/css/reset.css">
 		<link rel="stylesheet" type="text/css" href="../static/css/growth_plot.css">
 		<link rel="stylesheet" type="text/css" href="../static/css/growth_plot_desktop.css">
@@ -17,7 +19,7 @@
 						<form id="child_input_form" method="post" action="/login">
 							<!-- Hidden input with token to ensure security -->
 							{% csrf_token %}
-							<h2 style="font-size: 160%;"> Login to Start Plotting!</h2>
+							<h2 style="font-size: 160%; font-weight: 700;"> Login to Start Plotting!</h2>
 							<br>
 							<table class="child_inputdata_table no-spacing span_12" style="margin-bottom: 9px;">
 								<tr>
@@ -34,7 +36,7 @@
 								</tr>
 							</table>
 							<div class="span_12">
-								<button type="submit" class="float_right orange" style="height: 15%; font-weight: 500;">
+								<button type="submit" class="float_right orange" style="height: 51px; font-weight: 500;">
 									Submit
 								</button>
 							</div>
@@ -44,7 +46,7 @@
 
 						</form>
 						<form action="/register">
-							<button class="register_button yellow" style="margin-top: 9px;">
+							<button class="register_button yellow" style="margin-top: 9px; height: 51px;">
 								Register
 							</button>
 						</form>

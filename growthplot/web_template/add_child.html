@@ -1,6 +1,8 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+	
 	<head>
-
+		{% include 'head.html' %}
 		<link rel="stylesheet" type="text/css" href="../static/css/reset.css">
 		<link rel="stylesheet" type="text/css" href="../static/css/growth_plot.css">
 		<link rel="stylesheet" type="text/css" href="../static/css/growth_plot_register.css">
@@ -17,26 +19,29 @@
 
 		<div class="growth_plot_container">
 
-			<h2 style="font-size: 1.7em;">Please input information</h2>
+			<h2 style="font-size: 1.7em;font-weight: 700;">Please input information</h2>
 			<br>
-				<form class="span_12" id="child_input_form">
+				<form class="span_12" id="child_input_form" action="/child" method="POST" enctype="application/x-www-form-urlencoded">
+				<!-- hidden token field -->
+				{% csrf_token %}
+
 					<table class="no-spacing span_12 child_inputdata_table" id="register_child_table">
 						<tr>
 							<td colspan="2">
-								<input class="span_12" id="child_name" type="text"/>
+								<input class="span_12" id="child_name" type="text" name="name"/>
 								<label for="child_name">Name</label>
 							</td>
 						</tr>
 						<tr>
 							<td class="span_4">
-								<select id="child_sex" class="span_12 no-border">
-									<option value="Female">Female</option>
-									<option value="Male">Male</option>
+								<select id="child_sex" class="span_12 no-border" name="sex">
+									<option value="F">Female</option>
+									<option value="M">Male</option>
 								 </select>
 								<label for="child_sex">Sex</label>
 							</td>
 							<td class="span_8">
-								<input class="span_12" id="date_of_birth" type="date"/>
+								<input class="span_12" id="date_of_birth" type="date" name="date-of-birth"/>
 								<label for="date_of_birth">Date of Birth</label>
 							</td>
 						</tr>
@@ -48,8 +53,12 @@
 					font-weight: 500" onclick="duplicate()">
 							+ Add Another
 					</button>
-
-
+					        {%if message %}
+        <div class="alert alert-danger" role="alert">{{message}}</div>
+        {% endif %}
+        {%if info %}
+        <div class="alert alert-warning" role="alert">{{info}}</div>
+        {% endif %}
 				
 				</form>
 		</div>

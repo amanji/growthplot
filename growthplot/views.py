@@ -47,24 +47,27 @@ def register(request):
     else:
       return render(request, 'index.html', {})
 
+def about(request):
+  return render(request, 'about.html', {})
+
 @login_required
 def profile(request):
   #Authenticate user
   children, children_json = controllers.get_children(request)
   if not children:
     info = "To begin using the system please register one or more children."
-    return render(request, 'add_children.html', {'info' : info})
+    return render(request, 'add_child.html', {'info' : info})
   else:
     return render(request, 'profile.html', {'children' : children, 'todays_date' : controllers.todays_date()})
 
 @login_required()
 def child(request):
   if request.method == 'GET':
-    return render(request, 'add_children.html', {})
+    return render(request, 'add_child.html', {})
   elif request.method == 'POST':
     message = controllers.add_child(request)
     if message:
-      return render(request, 'add_children.html', {'message' : message})
+      return render(request, 'add_child.html', {'message' : message})
     else:
       return redirect(profile)
 

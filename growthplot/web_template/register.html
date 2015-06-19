@@ -1,7 +1,8 @@
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
+	
 	<head>
-
+		{% include 'head.html' %}
 		<link rel="stylesheet" type="text/css" href="../static/css/reset.css">
 		<link rel="stylesheet" type="text/css" href="../static/css/growth_plot.css">
 		<link rel="stylesheet" type="text/css" href="../static/css/growth_plot_register.css">
@@ -20,7 +21,7 @@
 
 			<h1>Register for an Account</h1>
 			<br>
-			<h2>Step 1: Login Information</h2>
+			<h2 style="font-weight: 700;font-size: 185%;">Step 1: Login Information</h2>
 			<br>
 				<form class="span_12" id="child_input_form" action="/register" method="POST" >
 					<!-- Hidden input with token to ensure security -->
@@ -52,7 +53,7 @@
 						<input type="checkbox" style="margin-top: 10px; float: left;"><p style="margin-top: 10px;">I agree to the terms and conditions. This is a disclaimer test. This helps us not get sued and allows us to operate safely and easily.</p> </input>
 					</div>
 
-					<button type="submit" class="register_button yellow" style="margin-top: 9px; height: 60px; font-size: 240%;">
+					<button type="submit" class="register_button yellow" style="margin-top: 9px; height: 68px; font-size: 240%;">
 							Register
 					</button>
 				
