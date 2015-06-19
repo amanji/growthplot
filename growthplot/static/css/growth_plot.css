@@ -291,6 +291,7 @@ table.standard {
 	padding-top: 32px;
 }
 
+#child_input_form .register_button,
 .register_button {
   border: 0;
   padding: 0;
