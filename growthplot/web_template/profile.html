@@ -16,9 +16,9 @@
 
   <div class="row">
 
-    <div class="margin_top col-md-offset-3 col-md-6">
+    <div class="margin_top">
       <span class="bold header"> Select Child </span>
-      <select id="child-select">
+      <select id="child_select">
         {% if children %}
         {% for child in children %}
         <option id="{{child.id}}">{{child.name}}</option>
@@ -39,7 +39,7 @@
 </html>
 
 <script>
-  var currently_selected_child = $($('#child-select').children()[0]).attr("id");
+  var currently_selected_child = $($('#child_select').children()[0]).attr("id");
 
   $(document).ready(function () {
     $('#selected-child-input').val(currently_selected_child);
@@ -77,7 +77,7 @@
   });
 }
 
-$('#child-select').change(function (e) {
+$('#child_select').change(function (e) {
   currently_selected_child = $(this.options[this.selectedIndex]).attr("id");
   $('#child-profile-display').empty();
   get_child_profile();
