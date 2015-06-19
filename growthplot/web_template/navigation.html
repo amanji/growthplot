@@ -226,9 +226,17 @@ body.slide-active {
 }
 </style>
 <script type="text/javascript">
+$(document).
+if ($(window).width() > 766 ) {
+  
+            $('.img-container2').hide();
+     }
 $(document).ready(function () {
 
-
+if ($(window).width() > 766 ) {
+  
+            $('.img-container2').hide();
+     }
     //stick in the fixed 100% height behind the navbar but don't wrap it
     $('#slide-nav.navbar-inverse').after($('<div class="inverse" id="navbar-height-col"></div>'));
   
@@ -247,6 +255,7 @@ $(document).ready(function () {
     $(document).mouseup(function (e)
 	
 	{
+    
     var container = $("navbar-header");
 
     if (!container.is(e.target) // if the target of the click isn't the container...
@@ -325,7 +334,7 @@ $(document).ready(function () {
    </div>
    <div id="slidemenu">
     <ul class="nav navbar-nav">
-     <!-- <li> <div class="img-container2"><img src="/static/img/assets/LogoWhite(NavBar).png" ></div></li> -->
+     <li> <div class="img-container2"><img src="/static/img/assets/LogoWhite(NavBar).png" ></div></li>
      <li><a href="/">Home</a></li>
      <li><a href="/about">About</a></li>
 
