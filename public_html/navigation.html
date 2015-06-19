@@ -192,13 +192,20 @@ $(document).ready(function () {
     var pagewrapper = '#page-content';
     var navigationwrapper = '.navbar-header';
     var menuwidth = '100%'; // the menu inside the slide menu itself
-    var slidewidth = '30%';
+    var slidewidth = '0%';
     var menuneg = '-100%';
     var slideneg = '-30%';
 
-    $(document).click(function() {
+    $(document).mouseup(function (e)
+	
+	{
+    var container = $("navbar-header");
+
+    if (!container.is(e.target) // if the target of the click isn't the container...
+        && container.has(e.target).length === 0) // ... nor a descendant of the container
+    {
         $('#slidemenu').stop().animate({
-            left: menuneg 
+            left: menuneg
         });
 
         $('#navbar-height-col').stop().animate({
@@ -213,14 +220,8 @@ $(document).ready(function () {
             left: '0px'
         });
 
-        $(this).toggleClass('slide-active', !selected);
-
-      
-
-
-
-
-    });
+    }
+	});
 
 
     $("#slide-nav").on("click", toggler, function (e) {
@@ -309,9 +310,11 @@ $(document).ready(function () {
    <div id="slidemenu">
     <ul class="nav navbar-nav">
      <li class="active"><a href="#">Home</a></li>
-     <li><a href="#about">About</a></li>
-     <li><a href="#contact">Login</a></li>
-   <li><a href="#contact">Register</a></li>
+     <li><a href="/about">About</a></li>
+     <li><a href="/login">Login</a></li>
+   	 <li><a href="/register">Register</a></li>
+   	 <li><a href="/child">Add Child</a></li>
+   	 <li><a href="/profile">Growth Charts</a></li>
      
     </ul>
           
