@@ -5,31 +5,34 @@
 
 <body id="page-top">
 
-
+    {% include 'navigation.html' %}
+<!--
     <div style="background-color:#22AF73; color:white; padding:10px;">
         <img src="/static/img/assets/LogoWhite(NavBar).png">
     </div>
 
-
-    <div class="jumbotron">
+-->
+<div id="page-content">
+    <div class="jumbotron" >
         <div class="container">
 
             <div class="row">
-                <div class="col-md-6">  
+                <div class="col-md-6" id="trial">  
                     <h1>Growthplot!</h1>
                     <p>Track your child's growth</p>
                 </div>
 
                 <div class="col-md-4 col-md-off-set-8">
                   <h2> Login to Start Plotting!</h2>
-                  {% include 'login_form.html' %}
+                  <!--{% include 'login_form.html' %}-->
+                  
               </div>
 
           </div>
 
       </div>
   </div>
-
+</div>
   <!--    <img class="img-responsive header_img" src="/static/img/assets/home_main_image_large.png" /> -->
 
 </body>
