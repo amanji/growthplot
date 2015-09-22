@@ -21,3 +21,19 @@ By default Django uses an SQLite database for backend storage. We've opted to us
 `python manage.py migrate`
 * To check that the app will run, activate a python server by entering `python manage.py runserver` in your terminal in the project root directory. Open up your browser and copy and paste the URL address (http://127.0.0.1:8000/
 ). You should see a page notifying you that the app works.
+
+Unless otherwise explicitly specified, all works in this project are subject to the following liscence.
+
+Copyright 2015 Growthplot
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
