@@ -1,7 +1,5 @@
 # growthplot
 
-Project for App4Kids Hackathon
-
 This project uses Python's Django web framework on top of a PostgreSQL database. Ensure that you have Python and Postgres installed on your computer. You should be able to get all OS specific installation instructions for Python and Postgres by visitng the relevant websites.
 
 ##Installation instructions for Django 1.8:
@@ -21,6 +19,10 @@ By default Django uses an SQLite database for backend storage. We've opted to us
 `python manage.py migrate`
 * To check that the app will run, activate a python server by entering `python manage.py runserver` in your terminal in the project root directory. Open up your browser and copy and paste the URL address (http://127.0.0.1:8000/
 ). You should see a page notifying you that the app works.
+
+--------------------------------------------------
+
+*** Liscencing Agreement ***
 
 Unless otherwise explicitly specified, all works in this project are subject to the following liscence.
 
